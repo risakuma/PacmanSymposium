@@ -7,7 +7,7 @@ package pacman;
 
 public class Food implements FoodInterface{
 	
-	private String foodName;
+	private String foodName; 
 	private int foodPoint;
 	private boolean powerUp = false;
 	

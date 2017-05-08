@@ -7,7 +7,7 @@ package pacman;
 
 public interface PlayerInterface {
 
-	public int getPosX();
+	public int getPosX(); 
 	public int getPosY();
 	public boolean canEat();
 	

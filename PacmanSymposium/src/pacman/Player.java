@@ -27,7 +27,7 @@ public class Player implements PlayerInterface{
 
 	@Override
 	public int getPosY() {
-		return this.posY;
+		return this.posY; 
 	}
 
 	@Override
