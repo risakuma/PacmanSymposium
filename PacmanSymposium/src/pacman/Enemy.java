@@ -25,11 +25,26 @@ public class Enemy implements EnemyInterface{
 		
 	}
 
+	public void update(){
+		
+	}
+	
+	public void setEaten(boolean b){
+		eaten = b;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
+	
 	@Override
 	public boolean isEaten(Player p) {
-		if(p.canEat() && x == p.getPosX() && y == p.getPosY()){
+		if(p.canEat() && x == p.getPosX() && y == p.getPosY())
 			eaten = true;
-		}
 		return eaten;
 	}
 
