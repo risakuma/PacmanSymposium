@@ -1,7 +1,6 @@
 package pacman;
 
 import guiPractice.GUIApplication;
-import guiPractice.Screen;
 
 //run this class
 
