@@ -1,20 +1,21 @@
 package pacman;
 
 import guiPractice.GUIApplication;
+import guiPractice.Screen;
 
 //run this class
 
 public class Main extends GUIApplication{
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Main mainGame = new Main();
+		Thread game = new Thread(mainGame);
+		game.start();
 	}
 
 	@Override
 	protected void initScreen() {
-		// TODO Auto-generated method stub
-		
+		Game pacman = new Game(getWidth(), getHeight());
+		setScreen(pacman);
 	}
 
 }
