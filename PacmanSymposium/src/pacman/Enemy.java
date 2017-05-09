@@ -22,7 +22,8 @@ public class Enemy implements EnemyInterface{
 	}
 	
 	public void findPlayer(Player p){
-		
+		int playerX = p.getPosX();
+		int playerY = p.getPosY();
 	}
 
 	public void update(){
