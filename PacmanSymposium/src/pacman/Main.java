@@ -1,10 +1,8 @@
 package pacman;
 
-import guiPractice.GUIApplication;
-
 //run this class
 
-public class Main extends GUIApplication{
+public class Main extends gui.practice.GUIApplication{
 	public static void main(String[] args) {
 		Main mainGame = new Main();
 		Thread game = new Thread(mainGame);
