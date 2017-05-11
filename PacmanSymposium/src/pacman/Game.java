@@ -27,12 +27,13 @@ public class Game extends Screen implements Runnable, KeyListener{
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
+		//check if player name exists or something later
 		System.out.println("Enter player name.");
 		Scanner s = new Scanner(System.in);
 		String name = s.nextLine();
 		player = new Player(name, 0, 0, 0);
 		
-		pic = new Graphic(10, 10, "resources/Pacman-OpenMouth.png");
+		pic = new Graphic(10, 10, "resources/Pacman-Player.gif");
 		viewObjects.add(pic);
 		
 		enemyList = new ArrayList<Enemy>();
