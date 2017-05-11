@@ -7,6 +7,8 @@ package pacman;
 
 public class Player implements PlayerInterface{
 	
+	//list of player names and highscores
+	
 	private String name;
 	private int score;
 	private int posX;
@@ -53,6 +55,10 @@ public class Player implements PlayerInterface{
 	@Override
 	public boolean canEat() {
 		return this.canEat;
+	}
+	
+	public void setScore(int p){
+		score += p;
 	}
 
 }
