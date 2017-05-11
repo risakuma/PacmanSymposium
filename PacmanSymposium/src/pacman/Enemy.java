@@ -3,43 +3,40 @@
  */
 package pacman;
 
+import java.util.ArrayList;
+
 /**
  * @author Risa
  *
  */
 public class Enemy implements EnemyInterface{
 
-	private final int BASE_X = 0;
-	private final int BASE_Y = 0;
+	private final int BASE_X = 100;
+	private final int BASE_Y = 300;
 	
 	private int x;
 	private int y;
-	private boolean eaten = false;
+	private boolean eaten;
 	
 	public Enemy(int x, int y){
 		this.x = x;
 		this.y = y;
+		eaten = false;
 	}
 	
-	public void findPlayer(Player p){
-		int playerX = p.getPosX();
-		int playerY = p.getPosY();
-	}
-
-	public void update(){
+	public void distanceToPlayer(Player p, ArrayList<Images> imageList){
+		int playerPosX = p.getPosX();
+		int playerPosY = p.getPosY();
+		
+		
 		
 	}
-	
-	public void setEaten(boolean b){
-		eaten = b;
-	}
-	
-	public int getX(){
-		return x;
-	}
-	
-	public int getY(){
-		return y;
+
+	public void move(int width, int height){
+		if(!eaten){
+			x += width;
+			y += height;
+		}
 	}
 	
 	@Override
@@ -51,8 +48,10 @@ public class Enemy implements EnemyInterface{
 
 	@Override
 	public void backToBase() {
-		x = BASE_X;
-		y = BASE_Y;
+		if(eaten){
+			x = BASE_X;
+			y = BASE_Y;
+		}
 	}
 	
 	
