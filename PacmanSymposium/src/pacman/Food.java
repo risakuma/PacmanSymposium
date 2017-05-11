@@ -7,6 +7,8 @@ package pacman;
 
 public class Food implements FoodInterface{
 	
+	//powerups dissapear within time or swap places with normal food
+	
 	private String foodName; 
 	private int foodPoint;
 	private boolean powerUp = false;
