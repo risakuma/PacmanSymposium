@@ -1,5 +1,10 @@
 package pacman;
 
+/**
+ * @author Risa
+ *
+ */
+
 public class Images {
 	
 	private boolean wall;

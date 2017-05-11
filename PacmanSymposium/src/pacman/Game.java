@@ -17,6 +17,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 	private boolean gameStart = true;
 	private Graphic pic;
 	
+	private ArrayList<Enemy> enemyList;
+	
 	public Game(int width, int height){
 		super(width, height);
 		Thread game = new Thread(this);
@@ -32,8 +34,11 @@ public class Game extends Screen implements Runnable, KeyListener{
 		
 		pic = new Graphic(10, 10, "resources/Pacman-OpenMouth.png");
 		viewObjects.add(pic);
+		
+		enemyList = new ArrayList<Enemy>();
+		
 	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(gameStart == true){
