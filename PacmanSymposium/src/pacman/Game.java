@@ -14,7 +14,7 @@ import gui.practice.Screen;
 public class Game extends Screen implements Runnable, KeyListener{
 	
 	private Player player;
-	private boolean gameStart = true;
+	private boolean gameStart = false;
 	private Graphic pic;
 	
 	private ArrayList<Enemy> enemyList;
@@ -31,15 +31,27 @@ public class Game extends Screen implements Runnable, KeyListener{
 		System.out.println("Enter player name.");
 		Scanner s = new Scanner(System.in);
 		String name = s.nextLine();
+		gameStart = true;
+		
+		
 		player = new Player(name, 0, 0, 0);
 		
 		pic = new Graphic(10, 10, "resource/Pacman-Player.gif");
 		viewObjects.add(pic);
 		
 		enemyList = new ArrayList<Enemy>();
-		enemyList.add(new Enemy(0, 0));
+		makeEnemy();
 		
 	}
+	
+	public void makeEnemy(){
+		int enemyCount = 0;
+		while(enemyCount > 5){
+			enemyList.add(new Enemy(0, 0));
+			enemyCount++;
+		}
+	}
+	
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
