@@ -17,6 +17,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	private boolean gameStart = false;
 	private Graphic pic;
 	
+	private ArrayList<Player> playerList;
 	private ArrayList<Enemy> enemyList;
 	
 	public Game(int width, int height){
@@ -27,12 +28,12 @@ public class Game extends Screen implements Runnable, KeyListener{
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		//check if player name exists or something later
+		playerList = new ArrayList<Player>();
+		
 		System.out.println("Enter player name.");
 		Scanner s = new Scanner(System.in);
 		String name = s.nextLine();
 		gameStart = true;
-		
 		
 		player = new Player(name, 0, 0, 0);
 		
@@ -40,8 +41,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 		viewObjects.add(pic);
 		
 		enemyList = new ArrayList<Enemy>();
-		makeEnemy();
-		
+		makeEnemy();	
 	}
 	
 	public void makeEnemy(){
