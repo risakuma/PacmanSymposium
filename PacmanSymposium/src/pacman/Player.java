@@ -25,15 +25,19 @@ public class Player implements PlayerInterface{
 	
 	public void update(String move){
 		if(move.equals("UP")){
+			System.out.println("Player moved UP");
 			posY += 5;
 		}
 		if(move.equals("DOWN")){
+			System.out.println("Player moved DOWN");
 			posY -= 5;
 		}
 		if(move.equals("LEFT")){
+			System.out.println("Player moved LEFT");
 			posX -= 5;
 		}
 		if(move.equals("RIGHT")){
+			System.out.println("Player moved RIGHT");
 			posX += 5;
 		}
 	}
