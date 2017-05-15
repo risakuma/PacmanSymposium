@@ -24,11 +24,13 @@ public class Enemy implements EnemyInterface{
 		eaten = false;
 	}
 	
-	public void distanceToPlayer(Player p, ArrayList<Images> imageList){
+	public void moveToPlayer(Player p, ArrayList<Images> imageList){
 		int playerPosX = p.getPosX();
 		int playerPosY = p.getPosY();
 		
-		
+		if(playerPosX - x >= 0 && playerPosY - y >= 0){
+			if()
+		}
 		
 	}
 
