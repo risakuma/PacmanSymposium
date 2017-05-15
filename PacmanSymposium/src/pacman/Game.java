@@ -14,7 +14,7 @@ import gui.practice.Screen;
 public class Game extends Screen implements Runnable, KeyListener{
 	
 	private Player player;
-	private boolean gameStart = false;
+	private boolean gameStart;
 	private Graphic pic;
 	
 	private ArrayList<Player> playerList;
@@ -33,7 +33,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 		System.out.println("Enter player name.");
 		Scanner s = new Scanner(System.in);
 		String name = s.nextLine();
-		gameStart = true;
+		this.gameStart = true;
 		
 		player = new Player(name, 0, 0, 0);
 		
@@ -55,7 +55,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(gameStart == true){
+		System.out.println("yes "+e.getKeyCode()+" we want "+KeyEvent.VK_UP);
+		if(gameStart){
 			if(e.getKeyCode() == KeyEvent.VK_UP){
 				player.update("UP");
 			}
