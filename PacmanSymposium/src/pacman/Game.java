@@ -37,7 +37,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 		
 		player = new Player(name, 0, 0, 0);
 		
-		pic = new Graphic(150, 300, "resource/Pacman-Player.gif");
+		pic = new Graphic(150, 100, "resource/Pacman-Player.png");
 		viewObjects.add(pic);
 		
 		enemyList = new ArrayList<Enemy>();
