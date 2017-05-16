@@ -20,6 +20,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 	private ArrayList<Player> playerList;
 	private ArrayList<Enemy> enemyList;
 	
+	private int _DIRECTION;
+	
 	public Game(int width, int height){
 		super(width, height);
 		Thread game = new Thread(this);
@@ -55,12 +57,25 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("yes "+e.getKeyCode()+" we want "+KeyEvent.VK_UP);
+		//initialize all keys as false
+		boolean _KEY1 = false;
+		boolean _KEY2 = false;
+		boolean _KEY3 = false;
+		boolean _KEY4 = false;
 		if(gameStart){
 			if(e.getKeyCode() == KeyEvent.VK_UP){
-				player.update("UP");
+				//player.update("UP");
+		
+				//doesn't break while loop.
+//				_KEY1 = true;
+//				while(_KEY1 && !_KEY2 && !_KEY3 && !_KEY4){
+//						player.update("UP");
+//						
+//				}
+			
 			}
 			if(e.getKeyCode() == KeyEvent.VK_DOWN){
+				_KEY2 = true;
 				player.update("DOWN");
 			}
 			if(e.getKeyCode() == KeyEvent.VK_LEFT){
@@ -71,6 +86,11 @@ public class Game extends Screen implements Runnable, KeyListener{
 			}
 		}
 	}
+	
+//	private int checkKey(){
+//		if(e.getKeyCode)
+//		return _DIRECTION;
+//	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
