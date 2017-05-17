@@ -40,10 +40,10 @@ public class Game extends Screen implements Runnable, KeyListener{
 //		String name = s.nextLine();
 		this.gameStart = true;
 		
-		player = new Player("name", 0, 0, 0);
-		
-		pic = new Graphic(75, 100, .15, "resource/Pacman-Player.png");
-		viewObjects.add(pic);
+		player = new Player("name", 0, 75, 100);
+		viewObjects.add(player);
+//		pic = new Graphic(75, 100, .15, "resource/Pacman-Player.png");
+//		viewObjects.add(pic);
 		
 		enemyList = new ArrayList<Enemy>();
 		makeEnemy();	
@@ -95,7 +95,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	public void run() {
 		while(gameStart){
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

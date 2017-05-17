@@ -5,11 +5,13 @@ package pacman;
 
 import java.util.ArrayList;
 
+import gui.components.Graphic;
+
 /**
  * @author Risa
  *
  */
-public class Enemy implements EnemyInterface{
+public class Enemy extends Graphic implements EnemyInterface{
 
 	private final int BASE_X = 100;
 	private final int BASE_Y = 300;
@@ -19,6 +21,7 @@ public class Enemy implements EnemyInterface{
 	private boolean eaten;
 	
 	public Enemy(int x, int y){
+		s
 		this.x = x;
 		this.y = y;
 		eaten = false;
