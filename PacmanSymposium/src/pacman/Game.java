@@ -13,6 +13,8 @@ import gui.practice.Screen;
 
 public class Game extends Screen implements Runnable, KeyListener{
 	
+	private Enemy enemy;
+	
 	private Player player;
 	private boolean gameStart;
 	private Graphic pic;
@@ -43,12 +45,12 @@ public class Game extends Screen implements Runnable, KeyListener{
 		
 		player = new Player("name", 0, 75, 100);
 		viewObjects.add(player);
-//		pic = new Graphic(75, 100, .15, "resource/Pacman-Player.png");
-//		viewObjects.add(pic);
 		
 		enemyList = new ArrayList<Enemy>();
 		makeEnemy();
-		viewObjects.add(enemyList.get(0));
+		enemy = new Enemy(0, 0);
+		
+		viewObjects.add(enemy);
 	}
 	
 	public void makeEnemy(){
@@ -115,6 +117,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 			if(leftPressed){
 				player.update("LEFT");
 			}
+			
+			enemy.moveToPlayer(player);
 		}
 	}
 

@@ -21,26 +21,31 @@ public class Enemy extends Graphic implements EnemyInterface{
 	private boolean eaten;
 	
 	public Enemy(int x, int y){
-		s
+		super(x, y, .1, "resource/Pacman-Ghost.png");
 		this.x = x;
 		this.y = y;
 		eaten = false;
 	}
 	
-	public void moveToPlayer(Player p, ArrayList<Images> imageList){
+	public void moveToPlayer(Player p){
 		int playerPosX = p.getPosX();
 		int playerPosY = p.getPosY();
 		
-		if(playerPosX - x >= 0 && playerPosY - y >= 0){
-			if()
+		if(playerPosX >= x){
+			x += 5;
+			setX(x);
 		}
-		
-	}
-
-	public void move(int width, int height){
-		if(!eaten){
-			x += width;
-			y += height;
+		if(playerPosX <= x){
+			x -= 5;
+			setX(x);
+		}
+		if(playerPosY >= y){
+			y += 5;
+			setY(y);
+		}
+		if(playerPosX <= y){
+			y -= 5;
+			setY(y);
 		}
 	}
 	
