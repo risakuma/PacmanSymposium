@@ -57,40 +57,24 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//initialize all keys as false
-		boolean _KEY1 = false;
-		boolean _KEY2 = false;
-		boolean _KEY3 = false;
-		boolean _KEY4 = false;
 		if(gameStart){
-			if(e.getKeyCode() == KeyEvent.VK_UP){
-				//player.update("UP");
-		
-				//doesn't break while loop.
-//				_KEY1 = true;
-//				while(_KEY1 && !_KEY2 && !_KEY3 && !_KEY4){
-//						player.update("UP");
-//						
-//				}
-			
+			int key = e.getKeyCode();
+			while(key == KeyEvent.VK_UP){
+				player.update("UP");
 			}
-			if(e.getKeyCode() == KeyEvent.VK_DOWN){
-				_KEY2 = true;
+			if(key == KeyEvent.VK_DOWN){
 				player.update("DOWN");
 			}
-			if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			if(key == KeyEvent.VK_LEFT){
 				player.update("LEFT");
 			}
-			if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			if(key == KeyEvent.VK_RIGHT){
 				player.update("RIGHT");
 			}
 		}
 	}
 	
-//	private int checkKey(){
-//		if(e.getKeyCode)
-//		return _DIRECTION;
-//	}
+
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
