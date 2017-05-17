@@ -28,22 +28,22 @@ public class Player extends Graphic implements PlayerInterface{
 	
 	public void update(String move){
 		if(move.equals("UP")){
-			System.out.println("Player moved UP");
+			//System.out.println("Player moved UP");
 			posY -= 5;
 			setY(posY);
 		}
 		if(move.equals("DOWN")){
-			System.out.println("Player moved DOWN");
+			//System.out.println("Player moved DOWN");
 			posY += 5;
 			setY(posY);
 		}
 		if(move.equals("LEFT")){
-			System.out.println("Player moved LEFT");
+			//System.out.println("Player moved LEFT");
 			posX -= 5;
 			setX(posX);
 		}
 		if(move.equals("RIGHT")){
-			System.out.println("Player moved RIGHT");
+			//System.out.println("Player moved RIGHT");
 			posX += 5;
 			setX(posX);
 		}

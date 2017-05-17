@@ -16,6 +16,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	private Player player;
 	private boolean gameStart;
 	private Graphic pic;
+	private Graphic gPic;
 	
 	private ArrayList<Player> playerList;
 	private ArrayList<Enemy> enemyList;
@@ -46,7 +47,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 //		viewObjects.add(pic);
 		
 		enemyList = new ArrayList<Enemy>();
-		makeEnemy();	
+		makeEnemy();
+		viewObjects.add(enemyList.get(0));
 	}
 	
 	public void makeEnemy(){
@@ -91,6 +93,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 		}
 	}
 	
+	//make it so that you can only click it once to move, clicking it more times should not make it faster
 	@Override
 	public void run() {
 		while(gameStart){
