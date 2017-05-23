@@ -30,22 +30,43 @@ public class Enemy extends Graphic implements EnemyInterface{
 	public void moveToPlayer(Player p){
 		int playerPosX = p.getPosX();
 		int playerPosY = p.getPosY();
+	
+		if(!p.canEat()){
+			if(playerPosX >= x){
+				x += 5;
+				setX(x);
+			}
+			if(playerPosX <= x){
+				x -= 5;
+				setX(x);
+			}
+			if(playerPosY >= y){
+				y += 5;
+				setY(y);
+			}
+			if(playerPosX <= y){
+				y -= 5;
+				setY(y);
+			}
+		}
 		
-		if(playerPosX >= x){
-			x += 5;
-			setX(x);
-		}
-		if(playerPosX <= x){
-			x -= 5;
-			setX(x);
-		}
-		if(playerPosY >= y){
-			y += 5;
-			setY(y);
-		}
-		if(playerPosX <= y){
-			y -= 5;
-			setY(y);
+		if(p.canEat()){
+			if(playerPosX >= x){
+				x -= 5;
+				setX(x);
+			}
+			if(playerPosX <= x){
+				x += 5;
+				setX(x);
+			}
+			if(playerPosY >= y){
+				y -= 5;
+				setY(y);
+			}
+			if(playerPosX <= y){
+				y += 5;
+				setY(y);
+			}
 		}
 	}
 	
