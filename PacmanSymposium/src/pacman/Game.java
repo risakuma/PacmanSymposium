@@ -19,6 +19,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	private boolean gameStart;
 	private Graphic pic;
 	private Graphic gPic;
+	private Map map;
 	
 	private ArrayList<Player> playerList;
 	private ArrayList<Enemy> enemyList;
@@ -50,7 +51,10 @@ public class Game extends Screen implements Runnable, KeyListener{
 		makeEnemy();
 		enemy = new Enemy(0, 0);
 		
+		map = new Map(0, 0, 800, 675);
+		
 		viewObjects.add(enemy);
+		viewObjects.add(map);
 	}
 	
 	public void makeEnemy(){
