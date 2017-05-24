@@ -70,28 +70,24 @@ public class Game extends Screen implements Runnable, KeyListener{
 		if(gameStart){
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_UP){
-				player.update("UP");
 				upPressed = true;
 				downPressed = false;
 				rightPressed = false;
 				leftPressed = false;
 			}
 			if(key == KeyEvent.VK_DOWN){
-				player.update("DOWN");
 				upPressed = false;
 				downPressed = true;
 				rightPressed = false;
 				leftPressed = false;
 			}
 			if(key == KeyEvent.VK_LEFT){
-				player.update("LEFT");
 				upPressed = false;
 				downPressed = false;
 				rightPressed = false;
 				leftPressed = true;
 			}
 			if(key == KeyEvent.VK_RIGHT){
-				player.update("RIGHT");
 				upPressed = false;
 				downPressed = false;
 				rightPressed = true;
