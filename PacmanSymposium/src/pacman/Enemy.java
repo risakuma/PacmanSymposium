@@ -44,7 +44,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 				y += 5;
 				setY(y);
 			}
-			if(playerPosX <= y){
+			if(playerPosY <= y){
 				y -= 5;
 				setY(y);
 			}

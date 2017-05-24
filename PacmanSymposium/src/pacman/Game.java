@@ -70,6 +70,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 		if(gameStart){
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_UP){
+				player.update("UP");
 				upPressed = true;
 				downPressed = false;
 				rightPressed = false;
@@ -104,7 +105,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	public void run() {
 		while(gameStart){
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
