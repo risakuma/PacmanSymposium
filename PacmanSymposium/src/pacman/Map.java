@@ -21,6 +21,7 @@ public class Map extends Component{
 
 	@Override
 	public void update(Graphics2D g) {
+		//remember to add coordinates and label 1, 2, 3
 		size = 30;
 		g.setColor(Color.black);
 		for(int i = 0; i < 25; i++){
