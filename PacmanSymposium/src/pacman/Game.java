@@ -96,7 +96,6 @@ public class Game extends Screen implements Runnable, KeyListener{
 		}
 	}
 	
-	//make it so that you can only click it once to move, clicking it more times should not make it faster
 	@Override
 	public void run() {
 		while(gameStart){
@@ -126,10 +125,6 @@ public class Game extends Screen implements Runnable, KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		//System.out.println("Key was released");	
-//		int key = e.getKeyCode();
-//		if(key == KeyEvent.VK_UP){
-//			upPressed = false;
-//		}
 	}
 
 	@Override
