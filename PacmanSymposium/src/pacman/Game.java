@@ -3,7 +3,6 @@ package pacman;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import gui.components.Graphic;
 import gui.components.Visible;
@@ -49,9 +48,9 @@ public class Game extends Screen implements Runnable, KeyListener{
 		
 		enemyList = new ArrayList<Enemy>();
 		makeEnemy();
-		enemy = new Enemy(0, 0);
+		enemy = enemyList.get(0);
 		
-		map = new Map(0, 0, 800, 675);
+		map = new Map(20, 40, 800, 675);
 		
 		viewObjects.add(enemy);
 		viewObjects.add(map);
@@ -59,7 +58,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	public void makeEnemy(){
 		int enemyCount = 0;
-		while(enemyCount > 5){
+		while(enemyCount < 5){
 			enemyList.add(new Enemy(0, 0));
 			enemyCount++;
 		}

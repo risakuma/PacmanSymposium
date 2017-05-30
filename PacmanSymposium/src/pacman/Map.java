@@ -11,48 +11,83 @@ public class Map extends Component{
 	private ArrayList<int[]> coordinates;
 	private int width;
 	private int height;
-	private int size;
+	private final int  size = 30;
+	
+	private final int _SPACE = 0;
+	private final int _FOOD = 1;
+	private final int _WALL = 2;
 	
 	public Map(int x, int y, int w, int h) {
 		//width and height is divisible by 75
 		super(x, y, w, h);
-		width = w;
-		height = h;
+		this.width = w;
+		this.height = h;
 	}
 
 	@Override
 	public void update(Graphics2D g) {
-		//remember to add coordinates and label 1, 2, 3
-		size = 30;
 		coordinates = new ArrayList<int[]>();
+		//remember to add coordinates and label 1, 2, 3
 		g.setColor(Color.black);
+		System.out.println(_WALL);
+		
+		int x;
+		int y;
+		
 		for(int i = 0; i < 25; i++){
 			//top
 			if(i != 13){
-				g.drawRect(30*i + 20, 40, size, size);
-				//coordinates.add([23,32,34,54]);
+				x = size*i;
+				y = 0;
+				g.drawRect(x, y, size, size);
+				
+				coordinates.add(new int[] {x + 20, y + 40, _WALL});
+				
 			}		
 		}
+		
 		for(int i = 1; i < 20; i++){
 			//left
 			if(i != 10){
-				g.drawRect(20, 30*i + 40, size, size);
+				x = 0;
+				y = size*i;
+				g.drawRect(x, y , size, size);
+				
+				coordinates.add(new int[] {x + 20, y + 40, _WALL});
+				
 			}		
 		}
+		
 		for(int i = 0; i < 25; i++){
 			//bottom
 			if(i != 13){
-				g.drawRect(30*i + 20, 640, size, size);
+				x = size*i;
+				y = size * 20;
+				g.drawRect(x, y, size, size);
+				
+				coordinates.add(new int[] {x + 20, y + 40, _WALL});
 			}		
 		}
+		
 		for(int i = 1; i < 20; i++){
 			//right
 			if(i != 10){
-				g.drawRect(740, 30*i + 40, size, size);
+				x = size * 24;
+				y = size*i;
+				g.drawRect(x, y, size, size);
+				
+				coordinates.add(new int[] {x + 20, y + 40, _WALL});
 			}	
 		}
 		
-		
+	}
+	
+	public ArrayList<int[]> getCoordinates(){
+		return coordinates;
+	}
+	
+	public int getSize(){
+		return size;
 	}
 
 }
