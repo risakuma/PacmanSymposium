@@ -1,5 +1,7 @@
 package pacman;
 
+import java.util.ArrayList;
+
 import gui.components.Graphic;
 
 /**
@@ -26,7 +28,7 @@ public class Player extends Graphic implements PlayerInterface{
 		posY = y;
 	}
 	
-	public void update(String move){
+	public void update(String move, ArrayList<int[]> map){
 		if(move.equals("UP")){
 			//System.out.println("Player moved UP");
 			posY -= 5;
@@ -70,6 +72,26 @@ public class Player extends Graphic implements PlayerInterface{
 	
 	public void setScore(int p){
 		score += p;
+	}
+	
+	private boolean canMove(ArrayList<int[]> map){
+		for(int i = 0; i < map.size(); i++){
+			int[] temp = map.get(i);
+			if(){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean checkX(){
+		
+		return true;
+	}
+	
+	private boolean checkY(){
+		
+		return true;
 	}
 
 }

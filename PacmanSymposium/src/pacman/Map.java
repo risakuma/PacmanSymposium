@@ -18,7 +18,6 @@ public class Map extends Component{
 	private final int _WALL = 2;
 	
 	public Map(int x, int y, int w, int h) {
-		//width and height is divisible by 75
 		super(x, y, w, h);
 		this.width = w;
 		this.height = h;
@@ -29,14 +28,13 @@ public class Map extends Component{
 		coordinates = new ArrayList<int[]>();
 		//remember to add coordinates and label 1, 2, 3
 		g.setColor(Color.black);
-		System.out.println(_WALL);
 		
 		int x;
 		int y;
 		
 		for(int i = 0; i < 25; i++){
 			//top
-			if(i != 13){
+			if(i != 12){
 				x = size*i;
 				y = 0;
 				g.drawRect(x, y, size, size);
@@ -60,7 +58,7 @@ public class Map extends Component{
 		
 		for(int i = 0; i < 25; i++){
 			//bottom
-			if(i != 13){
+			if(i != 12){
 				x = size*i;
 				y = size * 20;
 				g.drawRect(x, y, size, size);
@@ -79,6 +77,9 @@ public class Map extends Component{
 				coordinates.add(new int[] {x + 20, y + 40, _WALL});
 			}	
 		}
+		
+		//g.drawRect(60, 60, size, size);
+		//coordinates.add(new int[] {});
 		
 	}
 	

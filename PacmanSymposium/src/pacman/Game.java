@@ -105,16 +105,16 @@ public class Game extends Screen implements Runnable, KeyListener{
 				e.printStackTrace();
 			}
 			if(upPressed){
-				player.update("UP");
+				player.update("UP", map.getCoordinates());
 			}
 			if(downPressed){
-				player.update("DOWN");
+				player.update("DOWN", map.getCoordinates());
 			}
 			if(rightPressed){
-				player.update("RIGHT");
+				player.update("RIGHT", map.getCoordinates());
 			}
 			if(leftPressed){
-				player.update("LEFT");
+				player.update("LEFT", map.getCoordinates());
 			}
 			
 			enemy.moveToPlayer(player);
