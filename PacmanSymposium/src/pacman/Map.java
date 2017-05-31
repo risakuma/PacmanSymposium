@@ -13,9 +13,9 @@ public class Map extends Component{
 	private int height;
 	private final int  size = 30;
 	
-	private final int _SPACE = 0;
-	private final int _FOOD = 1;
-	private final int _WALL = 2;
+//	private final int _SPACE = 0;
+//	private final int _FOOD = 1;
+//	private final int _WALL = 2;
 	
 	public Map(int x, int y, int w, int h) {
 		super(x, y, w, h);
@@ -39,7 +39,7 @@ public class Map extends Component{
 				y = 0;
 				g.drawRect(x, y, size, size);
 				
-				coordinates.add(new int[] {x + 20, y + 40, _WALL});
+				coordinates.add(new int[] {x, y, size});
 				
 			}		
 		}
@@ -51,7 +51,7 @@ public class Map extends Component{
 				y = size*i;
 				g.drawRect(x, y , size, size);
 				
-				coordinates.add(new int[] {x + 20, y + 40, _WALL});
+				coordinates.add(new int[] {x, y, size});
 				
 			}		
 		}
@@ -63,7 +63,7 @@ public class Map extends Component{
 				y = size * 20;
 				g.drawRect(x, y, size, size);
 				
-				coordinates.add(new int[] {x + 20, y + 40, _WALL});
+				coordinates.add(new int[] {x, y, size});
 			}		
 		}
 		
@@ -74,7 +74,7 @@ public class Map extends Component{
 				y = size*i;
 				g.drawRect(x, y, size, size);
 				
-				coordinates.add(new int[] {x + 20, y + 40, _WALL});
+				coordinates.add(new int[] {x, y, size});
 			}	
 		}
 		
@@ -85,10 +85,6 @@ public class Map extends Component{
 	
 	public ArrayList<int[]> getCoordinates(){
 		return coordinates;
-	}
-	
-	public int getSize(){
-		return size;
 	}
 
 }

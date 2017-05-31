@@ -28,6 +28,9 @@ public class Game extends Screen implements Runnable, KeyListener{
 	boolean rightPressed;
 	boolean leftPressed;
 	
+	public static final int MAP_POSITION_X = 20;
+	public static final int MAP_POSITION_Y = 40;
+	
 	public Game(int width, int height){
 		super(width, height);
 		Thread game = new Thread(this);
@@ -50,7 +53,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 		makeEnemy();
 		enemy = enemyList.get(0);
 		
-		map = new Map(20, 40, 800, 675);
+		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, 800, 675);
 		
 		viewObjects.add(enemy);
 		viewObjects.add(map);
