@@ -95,15 +95,4 @@ public class Player extends Graphic implements PlayerInterface{
 		}
 		return true;
 	}
-	
-	private boolean checkX(){
-		
-		return true;
-	}
-	
-	private boolean checkY(){
-		
-		return true;
-	}
-
 }

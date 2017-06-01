@@ -13,38 +13,47 @@ import gui.components.Graphic;
  */
 public class Enemy extends Graphic implements EnemyInterface{
 
-	private final int BASE_X = 100;
-	private final int BASE_Y = 300;
+	private int BASE_X;
+	private int BASE_Y;
 	
 	private int x;
 	private int y;
 	private boolean eaten;
 	
-	public Enemy(int x, int y){
+	private int MAP_POSITION_X;
+	private int MAP_POSITION_Y;
+	
+	public Enemy(int x, int y, int mapX, int mapY){
 		super(x, y, .1, "resource/Pacman-Ghost.png");
 		this.x = x;
 		this.y = y;
 		eaten = false;
+		
+		BASE_X = x;
+		BASE_Y = y;
+		
+		MAP_POSITION_X = mapX;
+		MAP_POSITION_Y = mapY;
 	}
 	
-	public void moveToPlayer(Player p){
+	public void moveToPlayer(Player p, ArrayList<int[]> map){
 		int playerPosX = p.getPosX();
 		int playerPosY = p.getPosY();
 	
 		if(!p.canEat()){
-			if(playerPosX >= x){
+			if(playerPosX >= x && canMove(map, x + 5, y)){
 				x += 5;
 				setX(x);
 			}
-			if(playerPosX <= x){
+			if(playerPosX <= x && canMove(map, x - 5, y)){
 				x -= 5;
 				setX(x);
 			}
-			if(playerPosY >= y){
+			if(playerPosY >= y && canMove(map, x, y + 5)){
 				y += 5;
 				setY(y);
 			}
-			if(playerPosY <= y){
+			if(playerPosY <= y && canMove(map, x, y - 5)){
 				y -= 5;
 				setY(y);
 			}
@@ -85,6 +94,15 @@ public class Enemy extends Graphic implements EnemyInterface{
 		}
 	}
 	
-	
+	private boolean canMove(ArrayList<int[]> map, int newX, int newY){
+		for(int i = 0; i < map.size(); i++){
+			int[] coordinates = map.get(i);
+			if(newX >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
+					&& newY >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+				return false;
+			}
+		}
+		return true;
+	}
 	
 }

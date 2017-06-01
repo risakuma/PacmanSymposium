@@ -28,6 +28,9 @@ public class Game extends Screen implements Runnable, KeyListener{
 	boolean rightPressed;
 	boolean leftPressed;
 	
+	public static final int ENEMY_START_X = 100;
+	public static final int ENEMY_START_Y = 300;
+	
 	public static final int MAP_POSITION_X = 20;
 	public static final int MAP_POSITION_Y = 40;
 	
@@ -62,7 +65,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	public void makeEnemy(){
 		int enemyCount = 0;
 		while(enemyCount < 5){
-			enemyList.add(new Enemy(0, 0));
+			enemyList.add(new Enemy(ENEMY_START_X, ENEMY_START_Y, MAP_POSITION_X, MAP_POSITION_Y));
 			enemyCount++;
 		}
 	}
@@ -120,7 +123,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 				player.update("LEFT", map.getCoordinates());
 			}
 			
-			enemy.moveToPlayer(player);
+			enemy.moveToPlayer(player, map.getCoordinates());
 		}
 	}
 
