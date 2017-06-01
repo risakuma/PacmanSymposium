@@ -24,7 +24,7 @@ public class Player extends Graphic implements PlayerInterface{
 	private static final int MAP_POS_Y = 40;
 	
 	public Player(String n, int s, int x, int y){
-		super(x, y, .15, "resource/Pacman-Player.png");
+		super(x, y, .75, "resource/Alice-Down.PNG");
 		name = n;
 		score = s;
 		posX = x;

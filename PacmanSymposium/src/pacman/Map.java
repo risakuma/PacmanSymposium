@@ -40,8 +40,10 @@ public class Map extends Component{
 				g.drawRect(x, y, size, size);
 				
 				coordinates.add(new int[] {x, y, size});
-				
-			}		
+			}
+			
+			//make an else statement add on the coordinates for the space so that player knows its a space that
+			//can go to the other side
 		}
 		
 		for(int i = 1; i < 20; i++){
