@@ -23,6 +23,11 @@ public class Player extends Graphic implements PlayerInterface{
 	private static final int MAP_POS_X = 20;
 	private static final int MAP_POS_Y = 40;
 	
+	private final int TOP = 0;
+	private final int LEFT = 1;
+	private final int BOTTOM = 2;
+	private final int RIGHT = 3;
+	
 	public Player(String n, int s, int x, int y){
 		super(x, y, .75, "resource/Alice-Down.PNG");
 		name = n;
@@ -34,28 +39,29 @@ public class Player extends Graphic implements PlayerInterface{
 	public void update(String move, ArrayList<int[]> map){
 		if(move.equals("UP")){
 			//System.out.println("Player moved UP");
-			if(canMove(map, posX, posY - 5)){
+			if(canMove(map, posX, posY - 5, TOP)){
+				System.out.println(getWidth());
 				posY -= 5;
 				setY(posY);
 			}	
 		}
 		if(move.equals("DOWN")){
 			//System.out.println("Player moved DOWN");
-			if(canMove(map, posX, posY + 5)){
+			if(canMove(map, posX, posY + 5, BOTTOM)){
 				posY += 5;
 				setY(posY);
 			}		
 		}
 		if(move.equals("LEFT")){
 			//System.out.println("Player moved LEFT");
-			if(canMove(map, posX - 5, posY)){
+			if(canMove(map, posX - 5, posY, LEFT)){
 				posX -= 5;
 				setX(posX);
 			}		
 		}
 		if(move.equals("RIGHT")){
 			//System.out.println("Player moved RIGHT");
-			if(canMove(map, posX + 5, posY)){
+			if(canMove(map, posX + 5, posY, RIGHT)){
 				posX += 5;
 				setX(posX);
 			}	
@@ -85,11 +91,23 @@ public class Player extends Graphic implements PlayerInterface{
 		score += p;
 	}
 	
-	private boolean canMove(ArrayList<int[]> map, int newX, int newY){
+	private boolean canMove(ArrayList<int[]> map, int newX, int newY, int direction){
 		for(int i = 0; i < map.size(); i++){
 			int[] coordinates = map.get(i);
-			if(newX >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
+			if(direction == TOP && newX + getWidth()/2 >= coordinates[0] + MAP_POS_X && newX + getWidth()/2 <= coordinates[0] + coordinates[2] + MAP_POS_X 
 					&& newY >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+				return false;
+			}
+			if(direction == RIGHT && newX + getWidth() >= coordinates[0] + MAP_POS_X && newX + getWidth() <= coordinates[0] + coordinates[2] + MAP_POS_X 
+					&& newY + getHeight()/2 >= coordinates[1] + MAP_POS_Y && newY + getHeight()/2 <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+				return false;
+			}
+			if(direction == LEFT && newX >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
+					&& newY + getHeight()/2 >= coordinates[1] + MAP_POS_Y && newY + getHeight()/2 <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+				return false;
+			}
+			if(direction == BOTTOM && newX + getWidth()/2 >= coordinates[0] + MAP_POS_X && newX + getWidth()/2 <= coordinates[0] + coordinates[2] + MAP_POS_X 
+					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY + getHeight() <= coordinates[1] + coordinates[2] + MAP_POS_Y){
 				return false;
 			}
 		}
