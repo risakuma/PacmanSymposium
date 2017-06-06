@@ -32,9 +32,9 @@ public class Map extends Component{
 		int x;
 		int y;
 		
-		for(int i = 0; i < 25; i++){
+		for(int i = 0; i < 26; i++){
 			//top
-			if(i != 12){
+			if(i != 12 && i != 13){
 				x = size*i;
 				y = 0;
 				g.drawRect(x, y, size, size);
@@ -42,13 +42,14 @@ public class Map extends Component{
 				coordinates.add(new int[] {x, y, size});
 			}
 			
+			
 			//make an else statement add on the coordinates for the space so that player knows its a space that
 			//can go to the other side
 		}
 		
-		for(int i = 1; i < 20; i++){
+		for(int i = 0; i < 22; i++){
 			//left
-			if(i != 10){
+			if(i != 10 && i != 11){
 				x = 0;
 				y = size*i;
 				g.drawRect(x, y , size, size);
@@ -58,21 +59,21 @@ public class Map extends Component{
 			}		
 		}
 		
-		for(int i = 0; i < 25; i++){
+		for(int i = 0; i < 26; i++){
 			//bottom
-			if(i != 12){
+			if(i != 12 && i != 13){
 				x = size*i;
-				y = size * 20;
+				y = size * 21;
 				g.drawRect(x, y, size, size);
 				
 				coordinates.add(new int[] {x, y, size});
 			}		
 		}
 		
-		for(int i = 1; i < 20; i++){
+		for(int i = 0; i < 21; i++){
 			//right
-			if(i != 10){
-				x = size * 24;
+			if(i != 10 && i != 11){
+				x = size * 25;
 				y = size*i;
 				g.drawRect(x, y, size, size);
 				
@@ -80,8 +81,56 @@ public class Map extends Component{
 			}	
 		}
 		
-		//g.drawRect(60, 60, size, size);
-		//coordinates.add(new int[] {});
+		
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 6; j++){
+				if(i == 0){
+					x = 90;
+					y = 90 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 1){
+					x = 90;
+					y = 390 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 2){
+					x = 660;
+					y = 90 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 3){
+					x = 660;
+					y = 390 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+			}
+		}
+		
+		for(int i = 0; i < 6; i++){
+			x = 90 + (30*i);
+			y = 240;
+			g.drawRect(x, y, size, size);
+			coordinates.add(new int[] {x, y, size});
+		}
+		
+		for(int i = 0; i < 2; i++){
+			x = 180;
+			y = 120 + (30*i);
+			g.drawRect(x, y, size, size);
+			coordinates.add(new int[] {x, y, size});
+		}
+		
+		for(int i = 0; i < 2; i++){
+			x = 270;
+			y = 120 + (30*i);
+			g.drawRect(x, y, size, size);
+			coordinates.add(new int[] {x, y, size});
+		}
 		
 	}
 	

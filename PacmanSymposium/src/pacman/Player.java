@@ -29,7 +29,7 @@ public class Player extends Graphic implements PlayerInterface{
 	private final int RIGHT = 3;
 	
 	public Player(String n, int s, int x, int y){
-		super(x, y, .75, "resource/Alice-Down.PNG");
+		super(x, y, .85, "resource/Alice-Down.PNG");
 		name = n;
 		score = s;
 		posX = x;
@@ -40,7 +40,6 @@ public class Player extends Graphic implements PlayerInterface{
 		if(move.equals("UP")){
 			//System.out.println("Player moved UP");
 			if(canMove(map, posX, posY - 5, TOP)){
-				System.out.println(getWidth());
 				posY -= 5;
 				setY(posY);
 			}	
@@ -94,20 +93,20 @@ public class Player extends Graphic implements PlayerInterface{
 	private boolean canMove(ArrayList<int[]> map, int newX, int newY, int direction){
 		for(int i = 0; i < map.size(); i++){
 			int[] coordinates = map.get(i);
-			if(direction == TOP && newX + getWidth()/2 >= coordinates[0] + MAP_POS_X && newX + getWidth()/2 <= coordinates[0] + coordinates[2] + MAP_POS_X 
+			if(direction == TOP && newX + getWidth() >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
 					&& newY >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
 				return false;
 			}
 			if(direction == RIGHT && newX + getWidth() >= coordinates[0] + MAP_POS_X && newX + getWidth() <= coordinates[0] + coordinates[2] + MAP_POS_X 
-					&& newY + getHeight()/2 >= coordinates[1] + MAP_POS_Y && newY + getHeight()/2 <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+					&& newY +getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
 				return false;
 			}
 			if(direction == LEFT && newX >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
-					&& newY + getHeight()/2 >= coordinates[1] + MAP_POS_Y && newY + getHeight()/2 <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
 				return false;
 			}
-			if(direction == BOTTOM && newX + getWidth()/2 >= coordinates[0] + MAP_POS_X && newX + getWidth()/2 <= coordinates[0] + coordinates[2] + MAP_POS_X 
-					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY + getHeight() <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+			if(direction == BOTTOM && newX + getWidth() >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
+					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
 				return false;
 			}
 		}

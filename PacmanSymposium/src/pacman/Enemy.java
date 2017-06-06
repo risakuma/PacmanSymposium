@@ -23,6 +23,8 @@ public class Enemy extends Graphic implements EnemyInterface{
 	private int MAP_POSITION_X;
 	private int MAP_POSITION_Y;
 	
+	//make ghost go through some of the boxes
+	
 	public Enemy(int x, int y, int mapX, int mapY){
 		super(x, y, .1, "resource/Pacman-Ghost.png");
 		this.x = x;
