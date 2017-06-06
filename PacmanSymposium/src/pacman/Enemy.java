@@ -20,6 +20,11 @@ public class Enemy extends Graphic implements EnemyInterface{
 	private int y;
 	private boolean eaten;
 	
+	private final int TOP = 0;
+	private final int LEFT = 1;
+	private final int BOTTOM = 2;
+	private final int RIGHT = 3;
+	
 	private int MAP_POSITION_X;
 	private int MAP_POSITION_Y;
 	
@@ -43,19 +48,19 @@ public class Enemy extends Graphic implements EnemyInterface{
 		int playerPosY = p.getPosY();
 	
 		if(!p.canEat()){
-			if(playerPosX >= x && canMove(map, x + 5, y)){
+			if(playerPosX >= x && canMove(map, x + 5, y, RIGHT)){
 				x += 5;
 				setX(x);
 			}
-			if(playerPosX <= x && canMove(map, x - 5, y)){
+			if(playerPosX <= x && canMove(map, x - 5, y, LEFT)){
 				x -= 5;
 				setX(x);
 			}
-			if(playerPosY >= y && canMove(map, x, y + 5)){
+			if(playerPosY >= y && canMove(map, x, y + 5, BOTTOM)){
 				y += 5;
 				setY(y);
 			}
-			if(playerPosY <= y && canMove(map, x, y - 5)){
+			if(playerPosY <= y && canMove(map, x, y - 5, TOP)){
 				y -= 5;
 				setY(y);
 			}
@@ -96,11 +101,23 @@ public class Enemy extends Graphic implements EnemyInterface{
 		}
 	}
 	
-	private boolean canMove(ArrayList<int[]> map, int newX, int newY){
+	private boolean canMove(ArrayList<int[]> map, int newX, int newY, int direction){
 		for(int i = 0; i < map.size(); i++){
 			int[] coordinates = map.get(i);
-			if(newX >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
+			if(direction == TOP && newX + getWidth() >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
 					&& newY >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+				return false;
+			}
+			if(direction == RIGHT && newX + getWidth() >= coordinates[0] + MAP_POSITION_X && newX + getWidth() <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
+					&& newY +getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+				return false;
+			}
+			if(direction == LEFT && newX >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
+					&& newY + getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+				return false;
+			}
+			if(direction == BOTTOM && newX + getWidth() >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
+					&& newY + getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
 				return false;
 			}
 		}
