@@ -42,7 +42,11 @@ public class Player extends Graphic implements PlayerInterface{
 			if(canMove(map, posX, posY - 5, TOP)){
 				posY -= 5;
 				setY(posY);
-			}	
+			}
+			if(posX >= 390 + MAP_POS_X && posX <= 450 + MAP_POS_X && posY >= 0 + MAP_POS_Y && posY <= 30 + MAP_POS_Y){
+				setX(405 + MAP_POS_X);
+				setY();
+			}
 		}
 		if(move.equals("DOWN")){
 			//System.out.println("Player moved DOWN");

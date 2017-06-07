@@ -28,8 +28,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 	boolean rightPressed;
 	boolean leftPressed;
 	
-	public static final int ENEMY_START_X = 100;
-	public static final int ENEMY_START_Y = 300;
+	public static final int ENEMY_START_X = 500;
+	public static final int ENEMY_START_Y = 500;
 	
 	public static final int MAP_POSITION_X = 20;
 	public static final int MAP_POSITION_Y = 40;
