@@ -111,18 +111,61 @@ public class Map extends Component{
 			}
 		}
 		
-		for(int i = 0; i < 6; i++){
-			x = 90 + (30*i);
-			y = 240;
-			g.drawRect(x, y, size, size);
-			coordinates.add(new int[] {x, y, size});
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 6; j++){
+				if(i == 0){
+					x = 90 + (30*j);
+					y = 240;
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 1){
+					x = 90 + (30*j);
+					y = 390;
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 2){
+					x = 660 - (30*j);
+					y = 240;
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 3){
+					x = 660 - (30*j);
+					y = 390;
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+			}
 		}
-		
-		for(int i = 0; i < 2; i++){
-			x = 180;
-			y = 120 + (30*i);
-			g.drawRect(x, y, size, size);
-			coordinates.add(new int[] {x, y, size});
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 2; j++){
+				if(i == 0){
+					x = 180;
+					y = 120 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 1){
+					x = 180;
+					y = 480 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 2){
+					x = 180;
+					y = 120 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+				if(i == 3){
+					x = 180;
+					y = 120 + (30*j);
+					g.drawRect(x, y, size, size);
+					coordinates.add(new int[] {x, y, size});
+				}
+			}
 		}
 		
 		for(int i = 0; i < 2; i++){
