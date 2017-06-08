@@ -43,9 +43,9 @@ public class Player extends Graphic implements PlayerInterface{
 				posY -= 5;
 				setY(posY);
 			}
-			if(posX >= 390 + MAP_POS_X && posX <= 450 + MAP_POS_X && posY >= 0 + MAP_POS_Y && posY <= 30 + MAP_POS_Y){
-				setX(405 + MAP_POS_X);
-				setY();
+			if(posX >= Map.SPACE_TOP_COORD[0] && posX <= Map.SPACE_TOP_COORD[1] && posY <= Map.SPACE_TOP_COORD[2]){
+				posY = Map.SPACE_BOTTOM_COORD[2];
+				setY(posY);
 			}
 		}
 		if(move.equals("DOWN")){
@@ -53,21 +53,33 @@ public class Player extends Graphic implements PlayerInterface{
 			if(canMove(map, posX, posY + 5, BOTTOM)){
 				posY += 5;
 				setY(posY);
-			}		
+			}
+			if(posX >= Map.SPACE_BOTTOM_COORD[0] && posX <= Map.SPACE_BOTTOM_COORD[1] && posY >= Map.SPACE_BOTTOM_COORD[2]){
+				posY = Map.SPACE_TOP_COORD[2];
+				setY(posY);
+			}
 		}
 		if(move.equals("LEFT")){
 			//System.out.println("Player moved LEFT");
 			if(canMove(map, posX - 5, posY, LEFT)){
 				posX -= 5;
 				setX(posX);
-			}		
+			}
+			if(posY >= Map.SPACE_LEFT_COORD[0] && posY <= Map.SPACE_LEFT_COORD[1] && posX <= Map.SPACE_LEFT_COORD[2]){
+				posX = Map.SPACE_RIGHT_COORD[2];
+				setX(posX);
+			}
 		}
 		if(move.equals("RIGHT")){
 			//System.out.println("Player moved RIGHT");
 			if(canMove(map, posX + 5, posY, RIGHT)){
 				posX += 5;
 				setX(posX);
-			}	
+			}
+			if(posY >= Map.SPACE_RIGHT_COORD[0] && posY <= Map.SPACE_RIGHT_COORD[1] && posX >= Map.SPACE_RIGHT_COORD[2]){
+				posX = Map.SPACE_LEFT_COORD[2];
+				setX(posX);
+			}
 		}
 	}
 	

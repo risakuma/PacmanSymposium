@@ -31,7 +31,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 	//make ghost go through some of the boxes
 	
 	public Enemy(int x, int y, int mapX, int mapY){
-		super(x, y, .1, "resource/Pacman-Ghost.png");
+		super(x, y, .09, "resource/Pacman-Ghost.png");
 		this.x = x;
 		this.y = y;
 		eaten = false;

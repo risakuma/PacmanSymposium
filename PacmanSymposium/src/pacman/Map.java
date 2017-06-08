@@ -13,6 +13,11 @@ public class Map extends Component{
 	private int height;
 	private final int  size = 30;
 	
+	public static final int[] SPACE_TOP_COORD = {360, 420, 25}; //between x1 and x2 and above y1
+	public static final int[] SPACE_BOTTOM_COORD = {360, 420, 690}; //between x1 and x2 and below y1
+	public static final int[] SPACE_RIGHT_COORD = {300, 390, 780}; //between y1 and y2 and greater than x1
+	public static final int[] SPACE_LEFT_COORD = {300, 390, 0}; //between y1 and y2 and less than x1
+	
 //	private final int _SPACE = 0;
 //	private final int _FOOD = 1;
 //	private final int _WALL = 2;
