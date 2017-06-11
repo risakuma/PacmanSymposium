@@ -25,8 +25,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	boolean upPressed;
 	boolean downPressed;
-	boolean rightPressed;
 	boolean leftPressed;
+	boolean rightPressed;
 	
 	public static final int ENEMY_START_X = 500;
 	public static final int ENEMY_START_Y = 500;
@@ -116,11 +116,11 @@ public class Game extends Screen implements Runnable, KeyListener{
 			if(downPressed){
 				player.update("DOWN", map.getCoordinates());
 			}
-			if(rightPressed){
-				player.update("RIGHT", map.getCoordinates());
-			}
 			if(leftPressed){
 				player.update("LEFT", map.getCoordinates());
+			}
+			if(rightPressed){
+				player.update("RIGHT", map.getCoordinates());
 			}
 			
 			enemy.moveToPlayer(player, map.getCoordinates());
