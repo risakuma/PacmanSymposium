@@ -110,19 +110,23 @@ public class Player extends Graphic implements PlayerInterface{
 		for(int i = 0; i < map.size(); i++){
 			int[] coordinates = map.get(i);
 			if(direction == TOP && newX + getWidth() >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
-					&& newY >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+					&& newY >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y 
+					&& coordinates[3] == 1){
 				return false;
 			}
 			if(direction == RIGHT && newX + getWidth() >= coordinates[0] + MAP_POS_X && newX + getWidth() <= coordinates[0] + coordinates[2] + MAP_POS_X 
-					&& newY +getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+					&& newY +getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y 
+					&& coordinates[3] == 1){
 				return false;
 			}
 			if(direction == LEFT && newX >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
-					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y 
+					&& coordinates[3] == 1){
 				return false;
 			}
 			if(direction == BOTTOM && newX + getWidth() >= coordinates[0] + MAP_POS_X && newX <= coordinates[0] + coordinates[2] + MAP_POS_X 
-					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y){
+					&& newY + getHeight() >= coordinates[1] + MAP_POS_Y && newY <= coordinates[1] + coordinates[2] + MAP_POS_Y 
+					&& coordinates[3] == 1){
 				return false;
 			}
 		}

@@ -20,7 +20,7 @@ public class Map extends Component{
 	
 	private final int _SPACE = 0;
 	private final int _WALL = 1;
-//	private final int _FOOD = 2;
+	private final int _FOOD = 2;
 	
 	
 	public Map(int x, int y, int w, int h) {
@@ -44,7 +44,6 @@ public class Map extends Component{
 				x = size*i;
 				y = 0;
 				g.drawRect(x, y, size, size);
-				
 				coordinates.add(new int[] {x, y, size, _WALL});
 			}
 			
@@ -59,7 +58,6 @@ public class Map extends Component{
 				x = 0;
 				y = size*i;
 				g.drawRect(x, y , size, size);
-				
 				coordinates.add(new int[] {x, y, size, _WALL});
 				
 			}		
@@ -71,7 +69,6 @@ public class Map extends Component{
 				x = size*i;
 				y = size * 21;
 				g.drawRect(x, y, size, size);
-				
 				coordinates.add(new int[] {x, y, size, _WALL});
 			}		
 		}
@@ -82,7 +79,6 @@ public class Map extends Component{
 				x = size * 25;
 				y = size*i;
 				g.drawRect(x, y, size, size);
-				
 				coordinates.add(new int[] {x, y, size, _WALL});
 			}	
 		}
@@ -245,12 +241,22 @@ public class Map extends Component{
 		
 		//tryna figure out how i can add the coordinates that are not already in the ArrayList and label it with _FOOD so that if i check
 		//that spot later and it equals to _FOOD then in the food class i just place food
-//		for(int i = 0; i < coordinates.size(); i++){
-//			int[] temp = coordinates.get(i);
-//			if(temp[0]){
-//				
-//			}
-//		}
+		
+		ArrayList<int[]> temp = new ArrayList<int[]>();
+		for(int i = 0; i < (26*22); i++){
+			x = size*i;
+			y = 0;
+			if(i % 26 == 0){
+				x = size*i;
+				y = 22*i;
+				temp.add(new int[] {x, y, size, _FOOD});	
+			}
+			else{
+				x = size*i;
+				y = 22*i;
+				temp.add(new int[] {x, y, size, _FOOD});
+			}
+		}
 		
 	}
 	
