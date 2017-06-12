@@ -256,11 +256,11 @@ public class Map extends Component{
 			}
 		}
 		for(int i = 0; i < coordinates.size(); i++){
-			for(int j = 0; j < temp.size(); j--){
+			for(int j = temp.size() - 1; 0 < j; j--){
 				int[] cArray = coordinates.get(i);
 				int[] tArray = temp.get(j);
 				if(cArray[0] == tArray[0] && cArray[1] == tArray[1]){
-					temp.remove(i);
+					temp.remove(j);
 				}
 			}
 		}
