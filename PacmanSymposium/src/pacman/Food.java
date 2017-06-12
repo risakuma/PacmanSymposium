@@ -7,7 +7,8 @@ package pacman;
 
 public class Food implements FoodInterface{
 	
-	//powerups dissapear within time or swap places with normal food
+	//food randomly appears at different spots, the more times yo collect, the more appears each time
+	//powerups dissapear within time
 	
 	private String foodName; 
 	private int foodPoint;
