@@ -36,8 +36,9 @@ public class Map extends Component{
 		g.setColor(Color.black);
 		
 		int x;
-		int y;
+		int y;		
 		
+		//borders
 		for(int i = 0; i < 26; i++){
 			//top
 			if(i != 12 && i != 13){
@@ -51,7 +52,15 @@ public class Map extends Component{
 			//make an else statement add on the coordinates for the space so that player knows its a space that
 			//can go to the other side
 		}
-		
+		for(int i = 0; i < 26; i++){
+			//bottom
+			if(i != 12 && i != 13){
+				x = size*i;
+				y = size * 21;
+				g.drawRect(x, y, size, size);
+				coordinates.add(new int[] {x, y, size, _WALL});
+			}		
+		}
 		for(int i = 0; i < 22; i++){
 			//left
 			if(i != 10 && i != 11){
@@ -62,17 +71,6 @@ public class Map extends Component{
 				
 			}		
 		}
-		
-		for(int i = 0; i < 26; i++){
-			//bottom
-			if(i != 12 && i != 13){
-				x = size*i;
-				y = size * 21;
-				g.drawRect(x, y, size, size);
-				coordinates.add(new int[] {x, y, size, _WALL});
-			}		
-		}
-		
 		for(int i = 0; i < 21; i++){
 			//right
 			if(i != 10 && i != 11){
@@ -84,8 +82,10 @@ public class Map extends Component{
 		}
 		
 		
+		//map pieces
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 6; j++){
+				//piece 1
 				if(i == 0){
 					x = 3*size;
 					y = (3*size) + (size*j);
@@ -112,9 +112,9 @@ public class Map extends Component{
 				}
 			}
 		}
-		
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 6; j++){
+				//piece 2
 				if(i == 0){
 					x = (3*size) + (size*j);
 					y = 8*size;
@@ -143,6 +143,7 @@ public class Map extends Component{
 		}
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 2; j++){
+				//piece 3
 				if(i == 0){
 					x = 6*size;
 					y = (4*size) + (size*j);
@@ -169,9 +170,9 @@ public class Map extends Component{
 				}
 			}
 		}
-		
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 2; j++){
+				//piece 4
 				if(i == 0){
 					x = 9*size;
 					y = (4*size) + (size*j);
@@ -199,6 +200,8 @@ public class Map extends Component{
 			}
 		}
 		
+		
+		//enemy zone
 		for(int i = 0; i < 6; i++){
 			for(int j = 0; j < 2; j++){
 				if(j == 0){
@@ -215,7 +218,6 @@ public class Map extends Component{
 				}
 			}	
 		}
-		
 		for(int i = 0; i < 3; i++){
 			x = (11*size) + (size*i);
 			y = 13*size;
@@ -223,6 +225,8 @@ public class Map extends Component{
 			coordinates.add(new int[] {x, y, size, _WALL});
 		}
 		
+		
+		//label space in the enemy zone
 		for(int i = 0; i < 6; i++){
 			for(int j = 0; j < 2; j++){
 				if(j == 0){
@@ -241,7 +245,6 @@ public class Map extends Component{
 		
 		//figuring out how i can add the coordinates that are not already in the coordinates ArrayList and label it with _FOOD 
 		//so that if i check that spot later and it equals to _FOOD then in the food class i just place food
-		
 		ArrayList<int[]> temp = new ArrayList<int[]>();
 		for(int i = 0; i < 22; i++){
 			x = 0;
@@ -261,8 +264,7 @@ public class Map extends Component{
 				}
 			}
 		}
-		coordinates.addAll(temp);
-		
+		coordinates.addAll(temp);	
 	}
 	
 	public ArrayList<int[]> getCoordinates(){
