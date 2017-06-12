@@ -239,24 +239,29 @@ public class Map extends Component{
 		}
 		
 		
-		//tryna figure out how i can add the coordinates that are not already in the ArrayList and label it with _FOOD so that if i check
-		//that spot later and it equals to _FOOD then in the food class i just place food
+		//figuring out how i can add the coordinates that are not already in the coordinates ArrayList and label it with _FOOD 
+		//so that if i check that spot later and it equals to _FOOD then in the food class i just place food
 		
 		ArrayList<int[]> temp = new ArrayList<int[]>();
-		for(int i = 0; i < (26*22); i++){
-			x = size*i;
+		for(int i = 0; i < 22; i++){
+			x = 0;
 			y = 0;
-			if(i % 26 == 0){
-				x = size*i;
-				y = 22*i;
-				temp.add(new int[] {x, y, size, _FOOD});	
-			}
-			else{
-				x = size*i;
-				y = 22*i;
+			for(int j = 0 ; j < 26; j++){
+				x = size*j;
+				y = size*i;
 				temp.add(new int[] {x, y, size, _FOOD});
 			}
 		}
+		for(int i = 0; i < coordinates.size(); i++){
+			for(int j = 0; j < temp.size(); j--){
+				int[] cArray = coordinates.get(i);
+				int[] tArray = temp.get(j);
+				if(cArray[0] == tArray[0] && cArray[1] == tArray[1]){
+					temp.remove(i);
+				}
+			}
+		}
+		coordinates.addAll(temp);
 		
 	}
 	
