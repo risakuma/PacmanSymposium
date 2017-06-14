@@ -12,12 +12,8 @@ import gui.practice.Screen;
 
 public class Game extends Screen implements Runnable, KeyListener{
 	
-	private Enemy enemy;
-	
 	private Player player;
 	private boolean gameStart;
-	private Graphic pic;
-	private Graphic gPic;
 	private Map map;
 	
 	private ArrayList<Player> playerList;
@@ -29,8 +25,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 	boolean leftPressed;
 	boolean rightPressed;
 	
-	public static final int ENEMY_START_X = 500;
-	public static final int ENEMY_START_Y = 500;
+	public static final int ENEMY_START_X = 390;
+	public static final int ENEMY_START_Y = 330;
 	
 	public static final int MAP_POSITION_X = 20;
 	public static final int MAP_POSITION_Y = 40;
@@ -53,22 +49,29 @@ public class Game extends Screen implements Runnable, KeyListener{
 //		String name = s.nextLine();
 		this.gameStart = true;
 		
-		player = new Player("name", 0, 390, 330);
+		player = new Player("name", 0, 390, 460);
 		viewObjects.add(player);
-		
-		enemyList = new ArrayList<Enemy>();
-		makeEnemy();
-		enemy = enemyList.get(0);
 		
 		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, MAP_WIDTH, MAP_HEIGHT);
 		mapCoordinates = map.getCoordinates();
 		for(int[] coordinate: mapCoordinates){
 			if(coordinate[3] == 2){
-				viewObjects.add(new Food(coordinate[0], coordinate[1], "resource/cookie.png", "a", 2));
+				viewObjects.add(new Food(coordinate[0] + MAP_POSITION_X, coordinate[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
 			}
 		}
 		
-		viewObjects.add(enemy);
+		enemyList = new ArrayList<Enemy>();
+		makeEnemy();
+		for(Enemy e: enemyList){
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			viewObjects.add(e);
+			e.setOnScreen(true);
+		}
+		
 		viewObjects.add(map);
 	}
 	
@@ -117,7 +120,6 @@ public class Game extends Screen implements Runnable, KeyListener{
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if(upPressed){
@@ -133,7 +135,11 @@ public class Game extends Screen implements Runnable, KeyListener{
 				player.update("RIGHT", map.getCoordinates());
 			}
 			
-			enemy.moveToPlayer(player, map.getCoordinates());
+			for(Enemy e: enemyList){
+				if(e.getOnScreen()){
+					e.moveToPlayer(player, map.getCoordinates());
+				}
+			}
 		}
 	}
 

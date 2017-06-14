@@ -35,10 +35,10 @@ public class Map extends Component{
 	public void update(Graphics2D g) {
 		coordinates = new ArrayList<int[]>();
 		g.setColor(Color.black);
-		
+
 		//makes a grid
-		for(int x = 0; x < WIDTH * SIZE; x += SIZE){
-			for(int y = 0; y < HEIGHT * SIZE; y += SIZE){
+		for(int x = 0; x < WIDTH; x += SIZE){
+			for(int y = 0; y < HEIGHT; y += SIZE){
 				coordinates.add(new int[]{x, y, SIZE, _SPACE});
 			}
 		}
@@ -196,7 +196,12 @@ public class Map extends Component{
 				
 				numOfBoxY = 8;
 				if(coordinate[0] >= (VERTICAL_TRANSPORT - 1)*SIZE && coordinate[0] < (VERTICAL_TRANSPORT + 1)*SIZE && coordinate[1] >= numOfBoxY*SIZE &&
-						coordinate[1] < (numOfBoxY + 4)*SIZE){
+						coordinate[1] < (numOfBoxY + 5)*SIZE){
+					coordinate[3] = ENEMY_SPACE;
+				}
+				numOfBoxY = 14;
+				if(coordinate[0] >= (VERTICAL_TRANSPORT - 1)*SIZE && coordinate[0] < (VERTICAL_TRANSPORT + 1)*SIZE && coordinate[1] >= numOfBoxY*SIZE &&
+						coordinate[1] < (numOfBoxY + 1)*SIZE){
 					coordinate[3] = ENEMY_SPACE;
 				}
 			}
@@ -204,6 +209,8 @@ public class Map extends Component{
 		
 		for(int[] coordinate: coordinates){
 			if(coordinate[3] == _SPACE){
+				coordinate[0] += 10;
+				coordinate[1] += 10;
 				coordinate[3] = _FOOD;
 			}
 		}

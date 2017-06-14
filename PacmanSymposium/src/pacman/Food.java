@@ -17,7 +17,7 @@ public class Food extends Graphic implements FoodInterface{
 	private boolean powerUp = false;
 	
 	public Food(int x, int y, String imageLocation, String f, int p) {
-		super(x, y, .05, imageLocation);
+		super(x, y, .03, imageLocation);
 		foodName = f;
 		foodPoint = p;
 	}

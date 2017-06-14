@@ -13,6 +13,8 @@ import gui.components.Graphic;
  */
 public class Enemy extends Graphic implements EnemyInterface{
 
+	private boolean onScreen;
+	
 	private int BASE_X;
 	private int BASE_Y;
 	
@@ -105,23 +107,31 @@ public class Enemy extends Graphic implements EnemyInterface{
 		for(int i = 0; i < map.size(); i++){
 			int[] coordinates = map.get(i);
 			if(direction == TOP && newX + getWidth() >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
-					&& newY >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+					&& newY >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y && coordinates[3] == 1){
 				return false;
 			}
 			if(direction == RIGHT && newX + getWidth() >= coordinates[0] + MAP_POSITION_X && newX + getWidth() <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
-					&& newY +getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+					&& newY +getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y && coordinates[3] == 1){
 				return false;
 			}
 			if(direction == LEFT && newX >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
-					&& newY + getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+					&& newY + getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y && coordinates[3] == 1){
 				return false;
 			}
 			if(direction == BOTTOM && newX + getWidth() >= coordinates[0] + MAP_POSITION_X && newX <= coordinates[0] + coordinates[2] + MAP_POSITION_X 
-					&& newY + getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y){
+					&& newY + getHeight() >= coordinates[1] + MAP_POSITION_Y && newY <= coordinates[1] + coordinates[2] + MAP_POSITION_Y && coordinates[3] == 1){
 				return false;
 			}
 		}
 		return true;
+	}
+	
+	public void setOnScreen(boolean b){
+		onScreen = b;
+	}
+	
+	public boolean getOnScreen(){
+		return onScreen;
 	}
 	
 }
