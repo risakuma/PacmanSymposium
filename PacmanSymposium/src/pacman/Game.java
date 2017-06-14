@@ -19,6 +19,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	private ArrayList<Player> playerList;
 	private ArrayList<Enemy> enemyList;
 	private ArrayList<int[]> mapCoordinates;
+	private ArrayList<Food> foodList;
 	
 	boolean upPressed;
 	boolean downPressed;
@@ -43,6 +44,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		playerList = new ArrayList<Player>();
+		foodList = new ArrayList<Food>();
 		
 //		System.out.println("Enter player name.");
 //		Scanner s = new Scanner(System.in);
@@ -57,6 +59,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 		for(int[] coordinate: mapCoordinates){
 			if(coordinate[3] == 2){
 				viewObjects.add(new Food(coordinate[0] + MAP_POSITION_X, coordinate[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
+				foodList.add(new Food(coordinate[0] + MAP_POSITION_X, coordinate[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
 			}
 		}
 		
@@ -73,6 +76,39 @@ public class Game extends Screen implements Runnable, KeyListener{
 		}
 		
 		viewObjects.add(map);
+		
+		
+//		while(gameStart){
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			if(upPressed){
+//				player.update("UP", map.getCoordinates());
+//			}
+//			if(downPressed){
+//				player.update("DOWN", map.getCoordinates());
+//			}
+//			if(leftPressed){
+//				player.update("LEFT", map.getCoordinates());
+//			}
+//			if(rightPressed){
+//				player.update("RIGHT", map.getCoordinates());
+//			}
+//			
+//			for(Food f: foodList){
+//				if(player.getPosX() == f.getX()){
+//					viewObjects.remove(f);
+//				}
+//			}
+//			
+//			for(Enemy e: enemyList){
+//				if(e.getOnScreen()){
+//					e.moveToPlayer(player, map.getCoordinates());
+//				}
+//			}
+//		}
 	}
 	
 	public void makeEnemy(){
@@ -133,6 +169,12 @@ public class Game extends Screen implements Runnable, KeyListener{
 			}
 			if(rightPressed){
 				player.update("RIGHT", map.getCoordinates());
+			}
+			
+			for(Food f: foodList){
+				if(player.getPosX() == f.getX()){
+					
+				}
 			}
 			
 			for(Enemy e: enemyList){
