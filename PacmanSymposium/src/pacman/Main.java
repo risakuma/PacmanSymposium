@@ -11,8 +11,10 @@ public class Main extends gui.practice.GUIApplication{
 
 	@Override
 	protected void initScreen() {
-		Game pacman = new Game(1200, 730);
-		setScreen(pacman);
+		Intro story = new Intro(1200,730);
+		setScreen(story);
+//		Game pacman = new Game(1200, 730);
+//		setScreen(pacman);
 	}
 
 }
