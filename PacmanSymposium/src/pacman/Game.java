@@ -22,6 +22,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	private ArrayList<Player> playerList;
 	private ArrayList<Enemy> enemyList;
+	private ArrayList<int[]> mapCoordinates;
 	
 	boolean upPressed;
 	boolean downPressed;
@@ -33,6 +34,9 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	public static final int MAP_POSITION_X = 20;
 	public static final int MAP_POSITION_Y = 40;
+	
+	public static final int MAP_WIDTH = 781;
+	public static final int MAP_HEIGHT = 661;
 	
 	public Game(int width, int height){
 		super(width, height);
@@ -49,14 +53,20 @@ public class Game extends Screen implements Runnable, KeyListener{
 //		String name = s.nextLine();
 		this.gameStart = true;
 		
-		player = new Player("name", 0, 75, 100);
+		player = new Player("name", 0, 390, 330);
 		viewObjects.add(player);
 		
 		enemyList = new ArrayList<Enemy>();
 		makeEnemy();
 		enemy = enemyList.get(0);
 		
-		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, 800, 675);
+		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, MAP_WIDTH, MAP_HEIGHT);
+		mapCoordinates = map.getCoordinates();
+		for(int[] coordinate: mapCoordinates){
+			if(coordinate[3] == 2){
+				viewObjects.add(new Food(coordinate[0], coordinate[1], "resource/cookie.png", "a", 2));
+			}
+		}
 		
 		viewObjects.add(enemy);
 		viewObjects.add(map);
@@ -139,6 +149,14 @@ public class Game extends Screen implements Runnable, KeyListener{
 	
 	public KeyListener getKeyListener() {
 		return this;
+	}
+	
+	public static int getMapWidth(){
+		return MAP_WIDTH;
+	}
+	
+	public static int getMapHeight(){
+		return MAP_HEIGHT;
 	}
 	
 }

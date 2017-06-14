@@ -1,12 +1,14 @@
 package pacman;
 
+import gui.components.Graphic;
+
 /**
  * @author Katherine
  *
  */
 
-public class Food implements FoodInterface{
-	
+public class Food extends Graphic implements FoodInterface{
+
 	//food randomly appears at different spots, the more times yo collect, the more appears each time
 	//powerups dissapear within time
 	
@@ -14,7 +16,8 @@ public class Food implements FoodInterface{
 	private int foodPoint;
 	private boolean powerUp = false;
 	
-	public Food(String f, int p){
+	public Food(int x, int y, String imageLocation, String f, int p) {
+		super(x, y, .05, imageLocation);
 		foodName = f;
 		foodPoint = p;
 	}

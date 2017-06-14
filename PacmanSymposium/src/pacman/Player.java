@@ -29,7 +29,7 @@ public class Player extends Graphic implements PlayerInterface{
 	private final int RIGHT = 3;
 	
 	public Player(String n, int s, int x, int y){
-		super(x, y, .85, "resource/Alice-Down.PNG");
+		super(x, y, .84, "resource/Alice-Down.PNG");
 		name = n;
 		score = s;
 		posX = x;
