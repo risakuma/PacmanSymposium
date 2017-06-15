@@ -40,7 +40,7 @@ public class Button extends TextLabel implements Clickable, MouseListener{
 		g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
 		FontMetrics fm = g.getFontMetrics();
 		if(getText() != null){
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			String t = getText();
 			//just in case text is too wide cut off
 			int cutoff = t.length();

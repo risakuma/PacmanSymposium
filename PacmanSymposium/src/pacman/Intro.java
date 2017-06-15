@@ -15,11 +15,11 @@ public class Intro extends GUIApplication{
 	}
 
 	@Override
-	protected void initScreen() {
-		gameScreen = new Game(1200, 730);
-		
-		screen = new IntroScreen(getWidth(), getHeight());
+	protected void initScreen() {		
+		screen = new IntroScreen(1200, 730);
 		setScreen(screen);
+		
+		//gameScreen = new Game(1200, 730);
 	}
 
 }
