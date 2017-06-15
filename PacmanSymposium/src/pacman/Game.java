@@ -58,8 +58,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 		mapCoordinates = map.getCoordinates();
 		for(int i = 0; i < mapCoordinates.size(); i+=4){
 			if(mapCoordinates.get(i)[3] == 2){
-				viewObjects.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
-				foodList.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
+				viewObjects.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "normal", 30));
+				foodList.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "normal", 30));
 			}
 		}
 		
@@ -77,38 +77,6 @@ public class Game extends Screen implements Runnable, KeyListener{
 		
 		viewObjects.add(map);
 		
-		
-//		while(gameStart){
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//			if(upPressed){
-//				player.update("UP", map.getCoordinates());
-//			}
-//			if(downPressed){
-//				player.update("DOWN", map.getCoordinates());
-//			}
-//			if(leftPressed){
-//				player.update("LEFT", map.getCoordinates());
-//			}
-//			if(rightPressed){
-//				player.update("RIGHT", map.getCoordinates());
-//			}
-//			
-//			for(Food f: foodList){
-//				if(player.getPosX() == f.getX()){
-//					viewObjects.remove(f);
-//				}
-//			}
-//			
-//			for(Enemy e: enemyList){
-//				if(e.getOnScreen()){
-//					e.moveToPlayer(player, map.getCoordinates());
-//				}
-//			}
-//		}
 	}
 	
 	public void makeEnemy(){
