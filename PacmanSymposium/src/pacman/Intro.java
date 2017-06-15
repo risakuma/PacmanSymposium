@@ -6,7 +6,7 @@ public class Intro extends GUIApplication{
 	
 	public static Intro intro;
 	public static IntroScreen screen;
-	public static Game mainScreen;
+	public static Game gameScreen;
 
 	public static void main(String[] args){
 		intro = new Intro();
@@ -16,7 +16,7 @@ public class Intro extends GUIApplication{
 
 	@Override
 	protected void initScreen() {
-		mainScreen = new Game(1200, 730);
+		gameScreen = new Game(1200, 730);
 		
 		screen = new IntroScreen(getWidth(), getHeight());
 		setScreen(screen);

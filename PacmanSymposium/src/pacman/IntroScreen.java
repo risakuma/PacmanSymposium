@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
+import gui.components.Action;
 import gui.components.Button;
 import gui.components.Visible;
 import gui.practice.Screen;
@@ -21,11 +22,11 @@ public class IntroScreen extends Screen implements MouseMotionListener, MouseLis
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-//		gameButton = new Button(0, 0, 0, 0, "Start Game", Color.blue, new Action(){
-//			public void act(){
-//				Intro.game.setScreen(Intro.gameScreen);
-//			}
-//		});
+		gameButton = new Button(40, 200, 150, 40, "Start Game", Color.blue, new Action(){
+			public void act(){
+				Intro.intro.setScreen(Intro.gameScreen);
+			}
+		});
 		viewObjects.add(gameButton);
 	}
 
@@ -33,6 +34,10 @@ public class IntroScreen extends Screen implements MouseMotionListener, MouseLis
 	public void mouseClicked(MouseEvent e) {
 		if(gameButton.isHovered(e.getX(), e.getY()))
 			gameButton.act();
+	}
+	
+	public MouseListener getMouseListener(){
+		return this;
 	}
 
 	@Override
