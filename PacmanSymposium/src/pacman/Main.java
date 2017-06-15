@@ -1,7 +1,5 @@
 package pacman;
 
-//run this class
-
 public class Main extends gui.practice.GUIApplication{
 	public static void main(String[] args) {
 		Main mainGame = new Main();
@@ -11,10 +9,10 @@ public class Main extends gui.practice.GUIApplication{
 
 	@Override
 	protected void initScreen() {
-		Intro story = new Intro(1200,730);
-		setScreen(story);
-//		Game pacman = new Game(1200, 730);
-//		setScreen(pacman);
+//		Intro story = new Intro(1200,730);
+//		setScreen(story);
+		Game pacman = new Game(1200, 730);
+		setScreen(pacman);
 	}
 
 }
