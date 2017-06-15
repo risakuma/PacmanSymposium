@@ -160,23 +160,39 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 			}
 			if(upPressed){
 				player.update("UP", map.getCoordinates());
+				if(isGameOver()){
+					System.out.println("!");
+					gameStart = false;
+					break;
+				}
 				checkFood(viewObjects);
-				checkGameOver();
 			}
 			if(downPressed){
 				player.update("DOWN", map.getCoordinates());
+				if(isGameOver()){
+					System.out.println("!");
+					gameStart = false;
+					break;
+				}
 				checkFood(viewObjects);
-				checkGameOver();
 			}
 			if(leftPressed){
 				player.update("LEFT", map.getCoordinates());
+				if(isGameOver()){
+					System.out.println("!");
+					gameStart = false;
+					break;
+				}
 				checkFood(viewObjects);
-				checkGameOver();
 			}
 			if(rightPressed){
 				player.update("RIGHT", map.getCoordinates());
+				if(isGameOver()){
+					System.out.println("!");
+					gameStart = false;
+					break;
+				}
 				checkFood(viewObjects);
-				checkGameOver();
 			}
 			
 			for(Enemy e: enemyList){
@@ -191,6 +207,9 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		}
 		
 		if(!gameStart){
+			youWinText(viewObjects);
+		}
+		if(!gameStart && isGameOver()){
 			gameOverButton(viewObjects);
 		}
 	}
@@ -199,7 +218,8 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	private void checkFood(ArrayList<Visible> viewObjects){
 		for(int i = 0; i < foodList.size(); i++){
 			if(player.getPosX() == foodList.get(i).getPosX() && player.getPosY() + MAP_POSITION_Y == foodList.get(i).getPosY()){
-				foodList.get(i).setImage("resource/t.png");
+				System.out.println("AAAAAAAAAA");
+				foodList.get(i).setImage("resource/t.png", .1);
 				foodList.remove(1);
 				if(foodList.get(i).isAPowerUp()){
 					player.setEat(true);
@@ -209,16 +229,40 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		}
 	}
 	
-	private void checkGameOver(){
+	private boolean isGameOver(){
 		for(Enemy e : enemyList){
-			if(player.getPosX() == e.getPosX() && player.getPosY() == e.getPosY() && player.canEat()){
-				e.setEaten(true);
-				e.backToBase(ENEMY_START_X, ENEMY_START_Y);
-				e.setEaten(false);
+			for(int i = e.getTopCoordinates()[0]; i <= e.getTopCoordinates()[1]; i++){
+				if(player.getBottomCoordinates()[2] == e.getTopCoordinates()[2] && i >= player.getBottomCoordinates()[0] && i <= player.getBottomCoordinates()[1] && !player.canEat()){
+					return true;
+				}
+			}
+			
+			for(int i = e.getBottomCoordinates()[0]; i <= e.getBottomCoordinates()[1]; i++){
+				if(player.getTopCoordinates()[2] == e.getBottomCoordinates()[2] && i >= player.getBottomCoordinates()[0] && i <= player.getBottomCoordinates()[1] && !player.canEat()){
+					return true;
+				}
+			}
+			
+			for(int i = e.getRightCoordinates()[0]; i <= e.getRightCoordinates()[1]; i++){
+				if(player.getLeftCoordinates()[2] == e.getRightCoordinates()[2] && i >= player.getBottomCoordinates()[0] && i <= player.getBottomCoordinates()[1] && !player.canEat()){
+					return true;
+				}
+			}
+			
+			for(int i = e.getLeftCoordinates()[0]; i <= e.getLeftCoordinates()[1]; i++){
+				if(player.getRightCoordinates()[2] == e.getRightCoordinates()[2] && i >= player.getBottomCoordinates()[0] && i <= player.getBottomCoordinates()[1] && !player.canEat()){
+					return true;
+				}
 			}
 		}
+		return false;
 		
 	}
+	
+//	//			//if(player.getPosX() == e.getPosX() && player.getPosY() == e.getPosY() && player.canEat()){
+//	e.setEaten(true);
+//	e.backToBase(ENEMY_START_X, ENEMY_START_Y);
+//	e.setEaten(false);
 	
 	private void gameOverButton(ArrayList<Visible> viewObjects){
 		again = new Button(40, 20, 150, 60, "Play Again", Color.blue, new Action(){
@@ -228,6 +272,10 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		});
 		viewObjects.add(again);
 		
+	}
+	
+	private void youWinText(ArrayList<Visible> viewObjects){
+		System.out.println("win!");
 	}
 
 	@Override

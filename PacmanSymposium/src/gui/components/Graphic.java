@@ -100,8 +100,14 @@ public class Graphic implements Visible {
 		this.y = y;
 	}
 	
-	public void setImage(String imageLocation){
+	public void setImage(String imageLocation, int x, int y){
 		this.imageLocation = imageLocation;
+		loadImages(this.imageLocation, x, y);
+	}
+	
+	public void setImage(String imageLocation, double scale){
+		this.imageLocation = imageLocation;
+		loadImages(this.imageLocation, scale);
 	}
 
 	@Override

@@ -1,9 +1,9 @@
 package pacman;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import gui.components.Graphic;
+import gui.components.Visible;
 
 /**
  * @author Katherine
@@ -18,6 +18,8 @@ public class Player extends Graphic implements PlayerInterface{
 	private int score;
 	private int posX;
 	private int posY;
+	private final static double scale = 0.87;
+	
 	private boolean canEat;
 	private boolean isEaten;
 	private static final int MAP_POS_X = 20;
@@ -29,7 +31,7 @@ public class Player extends Graphic implements PlayerInterface{
 	private final int RIGHT = 3;
 	
 	public Player(String n, int s, int x, int y){
-		super(x, y, .84, "resource/Alice-Down.PNG");
+		super(x, y, scale, "resource/alice_down.PNG");
 		name = n;
 		score = s;
 		posX = x;
@@ -39,6 +41,7 @@ public class Player extends Graphic implements PlayerInterface{
 	public void update(String move, ArrayList<int[]> map){
 		if(move.equals("UP")){
 			//System.out.println("Player moved UP");
+			setImage("resource/alice_up.png", scale);
 			if(canMove(map, posX, posY - 5, TOP)){
 				posY -= 5;
 				setY(posY);
@@ -50,6 +53,7 @@ public class Player extends Graphic implements PlayerInterface{
 		}
 		if(move.equals("DOWN")){
 			//System.out.println("Player moved DOWN");
+			setImage("resource/alice_down.png", scale);
 			if(canMove(map, posX, posY + 5, BOTTOM)){
 				posY += 5;
 				setY(posY);
@@ -61,6 +65,7 @@ public class Player extends Graphic implements PlayerInterface{
 		}
 		if(move.equals("LEFT")){
 			//System.out.println("Player moved LEFT");
+			setImage("resource/alice_left.png", scale);
 			if(canMove(map, posX - 5, posY, LEFT)){
 				posX -= 5;
 				setX(posX);
@@ -72,6 +77,7 @@ public class Player extends Graphic implements PlayerInterface{
 		}
 		if(move.equals("RIGHT")){
 			//System.out.println("Player moved RIGHT");
+			setImage("resource/alice_right.png", scale);
 			if(canMove(map, posX + 5, posY, RIGHT)){
 				posX += 5;
 				setX(posX);
@@ -82,7 +88,7 @@ public class Player extends Graphic implements PlayerInterface{
 			}
 		}
 	}
-	
+
 	public boolean isEaten(){
 		return this.isEaten;
 	}
@@ -96,7 +102,23 @@ public class Player extends Graphic implements PlayerInterface{
 	public int getPosY() {
 		return this.posY; 
 	}
-
+	
+	public int[] getTopCoordinates(){
+		return new int[]{posX, (posX + getWidth()), posY};
+	}
+	
+	public int[] getBottomCoordinates(){
+		return new int[]{posX, (posX + getWidth()), (posY + getHeight())};
+	}
+	
+	public int[] getRightCoordinates(){
+		return new int[]{posY, (posY + getHeight()), (posX + getWidth())};
+	}
+	
+	public int[] getLeftCoordinates(){
+		return new int[]{posY, (posY + getHeight()), posX};
+	}
+	
 	@Override
 	public boolean canEat() {
 		return canEat;
@@ -105,15 +127,6 @@ public class Player extends Graphic implements PlayerInterface{
 	public void setEat(boolean b){
 		canEat = b;
 	}
-	
-	public double getCenterX(){
-		return  posX + ((getWidth()*.84) / 2);
-	}
-	
-	public double getCenterY(){
-		return	posY + ((getHeight()*.84) / 2);
-	}
-	
 	public void setScore(int p){
 		score += p;
 	}

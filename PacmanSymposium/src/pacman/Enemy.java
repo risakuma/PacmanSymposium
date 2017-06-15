@@ -17,6 +17,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 	
 	private int x;
 	private int y;
+	private static double scale = .25;
 	
 	private boolean eaten;
 	
@@ -29,7 +30,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 	private int MAP_POSITION_Y;
 	
 	public Enemy(int x, int y, int mapX, int mapY){
-		super(x, y, .09, "resource/Pacman-Ghost.png");
+		super(x, y, scale, "resource/ghost_down.png");
 		this.x = x;
 		this.y = y;
 		eaten = false;
@@ -42,43 +43,47 @@ public class Enemy extends Graphic implements EnemyInterface{
 		int playerPosX = p.getPosX();
 		int playerPosY = p.getPosY();
 	
-		if(p.canEat()){
+		if(!p.canEat()){
 			if(playerPosX >= x && canMove(map, x + 5, y, RIGHT)){
+				setImage("resource/ghost_right.png", scale);
 				x += 5;
 				setX(x);
 			}
 			if(playerPosX <= x && canMove(map, x - 5, y, LEFT)){
+				setImage("resource/ghost_left.png", scale);
 				x -= 5;
 				setX(x);
 			}
 			if(playerPosY >= y && canMove(map, x, y + 5, BOTTOM)){
+				setImage("resource/ghost_down.png", scale);
 				y += 5;
 				setY(y);
 			}
 			if(playerPosY <= y && canMove(map, x, y - 5, TOP)){
+				setImage("resource/ghost_up.png", scale);
 				y -= 5;
 				setY(y);
 			}
 		}
 		
-//		if(p.canEat()){
-//			if(playerPosX >= x){
-//				x -= 5;
-//				setX(x);
-//			}
-//			if(playerPosX <= x){
-//				x += 5;
-//				setX(x);
-//			}
-//			if(playerPosY >= y){
-//				y -= 5;
-//				setY(y);
-//			}
-//			if(playerPosX <= y){
-//				y += 5;
-//				setY(y);
-//			}
-//		}
+		if(p.canEat()){
+			if(playerPosX >= x){
+				x -= 5;
+				setX(x);
+			}
+			if(playerPosX <= x){
+				x += 5;
+				setX(x);
+			}
+			if(playerPosY >= y){
+				y -= 5;
+				setY(y);
+			}
+			if(playerPosX <= y){
+				y += 5;
+				setY(y);
+			}
+		}
 	}
 	
 	@Override
@@ -140,11 +145,19 @@ public class Enemy extends Graphic implements EnemyInterface{
 		return y;
 	}
 	
-	public double getCenterX(){
-		return x + ((getWidth() * .09) / 2);
+	public int[] getTopCoordinates(){
+		return new int[]{x, (x + getWidth()), y};
 	}
 	
-	public double getCenterY(){
-		return y + ((getHeight() * .09) / 2);
+	public int[] getBottomCoordinates(){
+		return new int[]{x, (x + getWidth()), (y + getHeight())};
+	}
+	
+	public int[] getRightCoordinates(){
+		return new int[]{y, (y + getHeight()), (x + getWidth())};
+	}
+	
+	public int[] getLeftCoordinates(){
+		return new int[]{y, (y + getHeight()), x};
 	}
 }
