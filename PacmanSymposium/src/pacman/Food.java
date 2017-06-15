@@ -23,6 +23,8 @@ public class Food extends Graphic implements FoodInterface{
 		super(x, y, .03, imageLocation);
 		foodName = f;
 		foodPoint = p;
+		this.x = x;
+		this.y = y;
 	}
 
 	@Override
@@ -35,6 +37,12 @@ public class Food extends Graphic implements FoodInterface{
 		return this.powerUp;
 	}
 	
+	public int getX(){
+		return x;
+	}
 
+	public int getY(){
+		return y;
+	}
 
 }

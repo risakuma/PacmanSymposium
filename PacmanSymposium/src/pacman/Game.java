@@ -44,6 +44,7 @@ public class Game extends Screen implements Runnable, KeyListener{
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		playerList = new ArrayList<Player>();
+		enemyList = new ArrayList<Enemy>();
 		foodList = new ArrayList<Food>();
 		
 //		System.out.println("Enter player name.");
@@ -51,10 +52,8 @@ public class Game extends Screen implements Runnable, KeyListener{
 //		String name = s.nextLine();
 		this.gameStart = true;
 		
-		player = new Player("name", 0, 390, 460);
-		viewObjects.add(player);
-		
 		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, MAP_WIDTH, MAP_HEIGHT);
+		viewObjects.add(map);
 		mapCoordinates = map.getCoordinates();
 		for(int i = 0; i < mapCoordinates.size(); i+=4){
 			if(mapCoordinates.get(i)[3] == 2){
@@ -63,7 +62,39 @@ public class Game extends Screen implements Runnable, KeyListener{
 			}
 		}
 		
-		enemyList = new ArrayList<Enemy>();
+		int cntr = 0;
+		
+		for(int i = 0; i < 6; i++){
+
+			int rndNum = (int) (Math.random() *mapCoordinates.size());
+			if(mapCoordinates.get(rndNum)[3] == 2  && i <= 1){
+				for(Food f : foodList){
+					if(f.getX() - MAP_POSITION_X == mapCoordinates.get(rndNum)[0] && f.getY() - MAP_POSITION_Y == mapCoordinates.get(rndNum)[1]){
+						System.out.println("/");
+						viewObjects.remove(f);
+						foodList.remove(f);
+						viewObjects.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/milk.png", "powerup", 50));
+						foodList.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/milk.png", "powerup", 50));
+						break;
+					}
+				}
+			}else if(mapCoordinates.get(rndNum)[3] == 2){
+						for(Food f : foodList){
+							if(f.getX() - MAP_POSITION_X == mapCoordinates.get(rndNum)[0] && f.getY() - MAP_POSITION_Y == mapCoordinates.get(rndNum)[1]){
+								System.out.println("?");
+								viewObjects.remove(f);
+								foodList.remove(f);
+								viewObjects.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/cake.png", "higherpoints", 100));
+								foodList.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/cake.png", "higherpoints", 100));
+								break;
+							}
+						}
+			}
+		}
+		
+		player = new Player("name", 0, 410, 460);
+		viewObjects.add(player);
+		
 		makeEnemy();
 		for(Enemy e: enemyList){
 			try {
@@ -71,12 +102,9 @@ public class Game extends Screen implements Runnable, KeyListener{
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			viewObjects.add(e);
 			e.setOnScreen(true);
+			viewObjects.add(e);
 		}
-		
-		viewObjects.add(map);
-		
 	}
 	
 	public void makeEnemy(){
