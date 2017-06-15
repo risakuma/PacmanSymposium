@@ -11,27 +11,31 @@ public class Graphic implements Visible {
 	private int x;
 	private int y;
 	private BufferedImage image;
+	private String imageLocation;
 	private boolean loadedImages;
 	
 	public Graphic(int x, int y, String imageLocation){
 		this.x = x;
 		this.y = y;
 		loadedImages = false;
-		loadImages(imageLocation, 0, 0);
+		this.imageLocation = imageLocation;
+		loadImages(this.imageLocation, 0, 0);
 	}
 	
 	public Graphic(int x, int y, int w, int h, String imageLocation){
 		this.x = x;
 		this.y = y;
 		loadedImages = false;
-		loadImages(imageLocation, w, h);
+		this.imageLocation = imageLocation;
+		loadImages(this.imageLocation, w, h);
 	}
 	
 	public Graphic(int x, int y, double scale, String imageLocation){
 		this.x = x;
 		this.y = y;
 		loadedImages = false;
-		loadImages(imageLocation, scale);
+		this.imageLocation = imageLocation;
+		loadImages(this.imageLocation, scale);
 	}
 
 	private void loadImages(String imageLocation, int w, int h) {
@@ -94,6 +98,10 @@ public class Graphic implements Visible {
 	
 	public void setY(int y){
 		this.y = y;
+	}
+	
+	public void setImage(String imageLocation){
+		this.imageLocation = imageLocation;
 	}
 
 	@Override

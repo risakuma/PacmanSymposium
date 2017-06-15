@@ -15,11 +15,9 @@ public class Enemy extends Graphic implements EnemyInterface{
 
 	private boolean onScreen;
 	
-	private int BASE_X;
-	private int BASE_Y;
-	
 	private int x;
 	private int y;
+	
 	private boolean eaten;
 	
 	private final int TOP = 0;
@@ -30,16 +28,11 @@ public class Enemy extends Graphic implements EnemyInterface{
 	private int MAP_POSITION_X;
 	private int MAP_POSITION_Y;
 	
-	//make ghost go through some of the boxes
-	
 	public Enemy(int x, int y, int mapX, int mapY){
 		super(x, y, .09, "resource/Pacman-Ghost.png");
 		this.x = x;
 		this.y = y;
 		eaten = false;
-		
-		BASE_X = x;
-		BASE_Y = y;
 		
 		MAP_POSITION_X = mapX;
 		MAP_POSITION_Y = mapY;
@@ -49,7 +42,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 		int playerPosX = p.getPosX();
 		int playerPosY = p.getPosY();
 	
-		if(!p.canEat()){
+		if(p.canEat()){
 			if(playerPosX >= x && canMove(map, x + 5, y, RIGHT)){
 				x += 5;
 				setX(x);
@@ -68,38 +61,43 @@ public class Enemy extends Graphic implements EnemyInterface{
 			}
 		}
 		
-		if(p.canEat()){
-			if(playerPosX >= x){
-				x -= 5;
-				setX(x);
-			}
-			if(playerPosX <= x){
-				x += 5;
-				setX(x);
-			}
-			if(playerPosY >= y){
-				y -= 5;
-				setY(y);
-			}
-			if(playerPosX <= y){
-				y += 5;
-				setY(y);
-			}
-		}
+//		if(p.canEat()){
+//			if(playerPosX >= x){
+//				x -= 5;
+//				setX(x);
+//			}
+//			if(playerPosX <= x){
+//				x += 5;
+//				setX(x);
+//			}
+//			if(playerPosY >= y){
+//				y -= 5;
+//				setY(y);
+//			}
+//			if(playerPosX <= y){
+//				y += 5;
+//				setY(y);
+//			}
+//		}
 	}
 	
 	@Override
-	public boolean isEaten(Player p) {
-		if(p.canEat() && x == p.getPosX() && y == p.getPosY())
-			eaten = true;
+	public boolean isEaten() {
 		return eaten;
+	}
+	
+	@Override
+	public void setEaten(boolean b){
+		eaten = b;
 	}
 
 	@Override
-	public void backToBase() {
+	public void backToBase(int x, int y) {
 		if(eaten){
-			x = BASE_X;
-			y = BASE_Y;
+			this.x = x;
+			this.y = y;
+			setX(x);
+			setY(y);
 		}
 	}
 	
@@ -134,4 +132,19 @@ public class Enemy extends Graphic implements EnemyInterface{
 		return onScreen;
 	}
 	
+	public int getPosX(){
+		return x;
+	}
+	
+	public int getPosY(){
+		return y;
+	}
+	
+	public double getCenterX(){
+		return x + ((getWidth() * .09) / 2);
+	}
+	
+	public double getCenterY(){
+		return y + ((getHeight() * .09) / 2);
+	}
 }

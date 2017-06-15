@@ -1,16 +1,21 @@
 package pacman;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import gui.components.Action;
+import gui.components.Button;
 import gui.components.Graphic;
 import gui.components.Visible;
 import gui.practice.Screen;
 
 //where you would put it all together
 
-public class Game extends Screen implements Runnable, KeyListener{
+public class Game extends Screen implements Runnable, KeyListener, MouseListener{
 	
 	private Player player;
 	private boolean gameStart;
@@ -21,12 +26,14 @@ public class Game extends Screen implements Runnable, KeyListener{
 	private ArrayList<int[]> mapCoordinates;
 	private ArrayList<Food> foodList;
 	
+	private Button again;
+	
 	boolean upPressed;
 	boolean downPressed;
 	boolean leftPressed;
 	boolean rightPressed;
 	
-	public static final int ENEMY_START_X = 390;
+	public static final int ENEMY_START_X = 385;
 	public static final int ENEMY_START_Y = 330;
 	
 	public static final int MAP_POSITION_X = 20;
@@ -57,12 +64,11 @@ public class Game extends Screen implements Runnable, KeyListener{
 		mapCoordinates = map.getCoordinates();
 		for(int i = 0; i < mapCoordinates.size(); i+=4){
 			if(mapCoordinates.get(i)[3] == 2){
-				viewObjects.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "normal", 30));
-				foodList.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "normal", 30));
+				viewObjects.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", false, 30));
+				foodList.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", false, 30));
 			}
 		}
 		
-		int cntr = 0;
 		
 		for(int i = 0; i < 6; i++){
 
@@ -70,29 +76,27 @@ public class Game extends Screen implements Runnable, KeyListener{
 			if(mapCoordinates.get(rndNum)[3] == 2  && i <= 1){
 				for(Food f : foodList){
 					if(f.getX() - MAP_POSITION_X == mapCoordinates.get(rndNum)[0] && f.getY() - MAP_POSITION_Y == mapCoordinates.get(rndNum)[1]){
-						System.out.println("/");
 						viewObjects.remove(f);
 						foodList.remove(f);
-						viewObjects.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/milk.png", "powerup", 50));
-						foodList.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/milk.png", "powerup", 50));
+						viewObjects.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/milk.png", true, 50));
+						foodList.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/milk.png", true, 50));
 						break;
 					}
 				}
 			}else if(mapCoordinates.get(rndNum)[3] == 2){
 						for(Food f : foodList){
 							if(f.getX() - MAP_POSITION_X == mapCoordinates.get(rndNum)[0] && f.getY() - MAP_POSITION_Y == mapCoordinates.get(rndNum)[1]){
-								System.out.println("?");
 								viewObjects.remove(f);
 								foodList.remove(f);
-								viewObjects.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/cake.png", "higherpoints", 100));
-								foodList.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/cake.png", "higherpoints", 100));
+								viewObjects.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/cake.png", false, 100));
+								foodList.add(new Food(mapCoordinates.get(rndNum)[0] + MAP_POSITION_X, mapCoordinates.get(rndNum)[1] + MAP_POSITION_Y, "resource/cake.png", false, 100));
 								break;
 							}
 						}
 			}
 		}
 		
-		player = new Player("name", 0, 410, 460);
+		player = new Player("name", 0, 410, 465);
 		viewObjects.add(player);
 		
 		makeEnemy();
@@ -156,21 +160,23 @@ public class Game extends Screen implements Runnable, KeyListener{
 			}
 			if(upPressed){
 				player.update("UP", map.getCoordinates());
+				checkFood(viewObjects);
+				checkGameOver();
 			}
 			if(downPressed){
 				player.update("DOWN", map.getCoordinates());
+				checkFood(viewObjects);
+				checkGameOver();
 			}
 			if(leftPressed){
 				player.update("LEFT", map.getCoordinates());
+				checkFood(viewObjects);
+				checkGameOver();
 			}
 			if(rightPressed){
 				player.update("RIGHT", map.getCoordinates());
-			}
-			
-			for(Food f: foodList){
-				if(player.getPosX() == f.getX()){
-					
-				}
+				checkFood(viewObjects);
+				checkGameOver();
 			}
 			
 			for(Enemy e: enemyList){
@@ -178,7 +184,50 @@ public class Game extends Screen implements Runnable, KeyListener{
 					e.moveToPlayer(player, map.getCoordinates());
 				}
 			}
+			
+			if(foodList.isEmpty())
+				gameStart = false;
+
 		}
+		
+		if(!gameStart){
+			gameOverButton(viewObjects);
+		}
+	}
+	
+	//player won't know which food they already have,it is part of the game for  the player to figure out where the left over food is 
+	private void checkFood(ArrayList<Visible> viewObjects){
+		for(int i = 0; i < foodList.size(); i++){
+			if(player.getPosX() == foodList.get(i).getPosX() && player.getPosY() + MAP_POSITION_Y == foodList.get(i).getPosY()){
+				foodList.get(i).setImage("resource/t.png");
+				foodList.remove(1);
+				if(foodList.get(i).isAPowerUp()){
+					player.setEat(true);
+				}
+				break;
+			}
+		}
+	}
+	
+	private void checkGameOver(){
+		for(Enemy e : enemyList){
+			if(player.getPosX() == e.getPosX() && player.getPosY() == e.getPosY() && player.canEat()){
+				e.setEaten(true);
+				e.backToBase(ENEMY_START_X, ENEMY_START_Y);
+				e.setEaten(false);
+			}
+		}
+		
+	}
+	
+	private void gameOverButton(ArrayList<Visible> viewObjects){
+		again = new Button(40, 20, 150, 60, "Play Again", Color.blue, new Action(){
+			public void act(){
+				System.out.println("DONE!");
+			}
+		});
+		viewObjects.add(again);
+		
 	}
 
 	@Override
@@ -195,12 +244,45 @@ public class Game extends Screen implements Runnable, KeyListener{
 		return this;
 	}
 	
+	public void mouseClicked(MouseEvent e) {
+		if(again.isHovered(e.getX(), e.getY()))
+			again.act();
+	}
+	
+	public MouseListener getMouseListener(){
+		return this;
+	}
+	
 	public static int getMapWidth(){
 		return MAP_WIDTH;
 	}
 	
 	public static int getMapHeight(){
 		return MAP_HEIGHT;
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

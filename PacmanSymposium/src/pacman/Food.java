@@ -12,16 +12,15 @@ public class Food extends Graphic implements FoodInterface{
 	//food randomly appears at different spots, the more times yo collect, the more appears each time
 	//powerups dissapear within time
 	
-	private String foodName; 
 	private int foodPoint;
 	private boolean powerUp;
 	
 	private int x;
 	private int y;
 	
-	public Food(int x, int y, String imageLocation, String f, int p) {
+	public Food(int x, int y, String imageLocation, boolean b, int p) {
 		super(x, y, .03, imageLocation);
-		foodName = f;
+		powerUp = b;
 		foodPoint = p;
 		this.x = x;
 		this.y = y;
@@ -37,11 +36,11 @@ public class Food extends Graphic implements FoodInterface{
 		return this.powerUp;
 	}
 	
-	public int getX(){
+	public int getPosX(){
 		return x;
 	}
 
-	public int getY(){
+	public int getPosY(){
 		return y;
 	}
 

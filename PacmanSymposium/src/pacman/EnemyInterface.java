@@ -9,6 +9,7 @@ package pacman;
  */
 public interface EnemyInterface {
 	
-	public boolean isEaten(Player p);
-	public void backToBase();
+	public boolean isEaten();
+	public void setEaten(boolean b);
+	public void backToBase(int x, int y);
 }

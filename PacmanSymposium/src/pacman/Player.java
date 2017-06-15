@@ -18,8 +18,8 @@ public class Player extends Graphic implements PlayerInterface{
 	private int score;
 	private int posX;
 	private int posY;
-	private boolean canEat = false;
-	private boolean isEaten = false;
+	private boolean canEat;
+	private boolean isEaten;
 	private static final int MAP_POS_X = 20;
 	private static final int MAP_POS_Y = 40;
 	
@@ -99,7 +99,19 @@ public class Player extends Graphic implements PlayerInterface{
 
 	@Override
 	public boolean canEat() {
-		return this.canEat;
+		return canEat;
+	}
+	
+	public void setEat(boolean b){
+		canEat = b;
+	}
+	
+	public double getCenterX(){
+		return  posX + ((getWidth()*.84) / 2);
+	}
+	
+	public double getCenterY(){
+		return	posY + ((getHeight()*.84) / 2);
 	}
 	
 	public void setScore(int p){
