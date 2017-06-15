@@ -21,11 +21,11 @@ public class IntroScreen extends Screen implements MouseMotionListener, MouseLis
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		gameButton = new Button(0, 0, 0, 0, "Start Game", Color.blue, new Action(){
-			public void act(){
-				Intro.game.setScreen(Intro.gameScreen);
-			}
-		});
+//		gameButton = new Button(0, 0, 0, 0, "Start Game", Color.blue, new Action(){
+//			public void act(){
+//				Intro.game.setScreen(Intro.gameScreen);
+//			}
+//		});
 		viewObjects.add(gameButton);
 	}
 

@@ -224,10 +224,10 @@ public class Map extends Component{
 //		for(int i = 0; i < 26; i++){
 //			//top
 //			if(i != 12 && i != 13){
-//				x = size*i;
+//				x = SIZE*i;
 //				y = 0;
-//				g.drawRect(x, y, size, size);
-//				coordinates.add(new int[] {x, y, size, _WALL});
+//				g.drawRect(x, y, SIZE, SIZE);
+//				coordinates.add(new int[] {x, y, SIZE, _WALL});
 //			}
 //			
 //			
@@ -237,29 +237,29 @@ public class Map extends Component{
 //		for(int i = 0; i < 26; i++){
 //			//bottom
 //			if(i != 12 && i != 13){
-//				x = size*i;
-//				y = size * 21;
-//				g.drawRect(x, y, size, size);
-//				coordinates.add(new int[] {x, y, size, _WALL});
+//				x = SIZE*i;
+//				y = SIZE * 21;
+//				g.drawRect(x, y, SIZE, SIZE);
+//				coordinates.add(new int[] {x, y, SIZE, _WALL});
 //			}		
 //		}
 //		for(int i = 0; i < 22; i++){
 //			//left
 //			if(i != 10 && i != 11){
 //				x = 0;
-//				y = size*i;
-//				g.drawRect(x, y , size, size);
-//				coordinates.add(new int[] {x, y, size, _WALL});
+//				y = SIZE*i;
+//				g.drawRect(x, y , SIZE, SIZE);
+//				coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				
 //			}		
 //		}
 //		for(int i = 0; i < 21; i++){
 //			//right
 //			if(i != 10 && i != 11){
-//				x = size * 25;
-//				y = size*i;
-//				g.drawRect(x, y, size, size);
-//				coordinates.add(new int[] {x, y, size, _WALL});
+//				x = SIZE * 25;
+//				y = SIZE*i;
+//				g.drawRect(x, y, SIZE, SIZE);
+//				coordinates.add(new int[] {x, y, SIZE, _WALL});
 //			}	
 //		}
 //		
@@ -269,28 +269,28 @@ public class Map extends Component{
 //			for(int j = 0; j < 6; j++){
 //				//piece 1
 //				if(i == 0){
-//					x = 3*size;
-//					y = (3*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 3*SIZE;
+//					y = (3*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 1){
-//					x = 3*size;
-//					y = (13*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 3*SIZE;
+//					y = (13*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 2){
-//					x = 22*size;
-//					y = (3*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 22*SIZE;
+//					y = (3*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 3){
-//					x = 22*size;
-//					y = (13*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 22*SIZE;
+//					y = (13*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //			}
 //		}
@@ -298,28 +298,28 @@ public class Map extends Component{
 //			for(int j = 0; j < 6; j++){
 //				//piece 2
 //				if(i == 0){
-//					x = (3*size) + (size*j);
-//					y = 8*size;
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = (3*SIZE) + (SIZE*j);
+//					y = 8*SIZE;
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 1){
-//					x = (3*size) + (size*j);
-//					y = 13*size;
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = (3*SIZE) + (SIZE*j);
+//					y = 13*SIZE;
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 2){
-//					x = (22*size) - (size*j);
-//					y = 8*size;
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = (22*SIZE) - (SIZE*j);
+//					y = 8*SIZE;
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 3){
-//					x = (22*size) - (size*j);
-//					y = 13*size;
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = (22*SIZE) - (SIZE*j);
+//					y = 13*SIZE;
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //			}
 //		}
@@ -327,28 +327,28 @@ public class Map extends Component{
 //			for(int j = 0; j < 2; j++){
 //				//piece 3
 //				if(i == 0){
-//					x = 6*size;
-//					y = (4*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 6*SIZE;
+//					y = (4*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 1){
-//					x = 6*size;
-//					y = (16*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 6*SIZE;
+//					y = (16*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 2){
-//					x = 19*size;
-//					y = (4*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 19*SIZE;
+//					y = (4*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 3){
-//					x = 19*size;
-//					y = (16*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 19*SIZE;
+//					y = (16*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //			}
 //		}
@@ -356,28 +356,28 @@ public class Map extends Component{
 //			for(int j = 0; j < 2; j++){
 //				//piece 4
 //				if(i == 0){
-//					x = 9*size;
-//					y = (4*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 9*SIZE;
+//					y = (4*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 1){
-//					x = 9*size;
-//					y = (16*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 9*SIZE;
+//					y = (16*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 2){
-//					x = 16*size;
-//					y = (4*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 16*SIZE;
+//					y = (4*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(i == 3){
-//					x = 16*size;
-//					y = (16*size) + (size*j);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 16*SIZE;
+//					y = (16*SIZE) + (SIZE*j);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //			}
 //		}
@@ -387,24 +387,24 @@ public class Map extends Component{
 //		for(int i = 0; i < 6; i++){
 //			for(int j = 0; j < 2; j++){
 //				if(j == 0){
-//					x = 11*size;
-//					y = (8*size) + (size*i);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 11*SIZE;
+//					y = (8*SIZE) + (SIZE*i);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //				if(j == 1){
-//					x = 14*size;
-//					y = (8*size) + (size*i);
-//					g.drawRect(x, y, size, size);
-//					coordinates.add(new int[] {x, y, size, _WALL});
+//					x = 14*SIZE;
+//					y = (8*SIZE) + (SIZE*i);
+//					g.drawRect(x, y, SIZE, SIZE);
+//					coordinates.add(new int[] {x, y, SIZE, _WALL});
 //				}
 //			}	
 //		}
 //		for(int i = 0; i < 3; i++){
-//			x = (11*size) + (size*i);
-//			y = 13*size;
-//			g.drawRect(x, y, size, size);
-//			coordinates.add(new int[] {x, y, size, _WALL});
+//			x = (11*SIZE) + (SIZE*i);
+//			y = 13*SIZE;
+//			g.drawRect(x, y, SIZE, SIZE);
+//			coordinates.add(new int[] {x, y, SIZE, _WALL});
 //		}
 //		
 //		
@@ -412,14 +412,14 @@ public class Map extends Component{
 //		for(int i = 0; i < 6; i++){
 //			for(int j = 0; j < 2; j++){
 //				if(j == 0){
-//					x = 12*size;
-//					y = 8*size + (size*i);
-//					coordinates.add(new int[] {x, y, size, _SPACE});
+//					x = 12*SIZE;
+//					y = 8*SIZE + (SIZE*i);
+//					coordinates.add(new int[] {x, y, SIZE, _SPACE});
 //				}
 //				if(j == 1){
-//					x = 13*size;
-//					y = 8*size + (size*i);
-//					coordinates.add(new int[] {x, y, size, _SPACE});
+//					x = 13*SIZE;
+//					y = 8*SIZE + (SIZE*i);
+//					coordinates.add(new int[] {x, y, SIZE, _SPACE});
 //				}
 //			}
 //		}
@@ -432,9 +432,9 @@ public class Map extends Component{
 //			x = 0;
 //			y = 0;
 //			for(int j = 0 ; j < 26; j++){
-//				x = size*j;
-//				y = size*i;
-//				temp.add(new int[] {x, y, size, _FOOD});
+//				x = SIZE*j;
+//				y = SIZE*i;
+//				temp.add(new int[] {x, y, SIZE, _FOOD});
 //			}
 //		}
 //		for(int i = 0; i < coordinates.size(); i++){

@@ -56,10 +56,10 @@ public class Game extends Screen implements Runnable, KeyListener{
 		
 		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, MAP_WIDTH, MAP_HEIGHT);
 		mapCoordinates = map.getCoordinates();
-		for(int[] coordinate: mapCoordinates){
-			if(coordinate[3] == 2){
-				viewObjects.add(new Food(coordinate[0] + MAP_POSITION_X, coordinate[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
-				foodList.add(new Food(coordinate[0] + MAP_POSITION_X, coordinate[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
+		for(int i = 0; i < mapCoordinates.size(); i+=4){
+			if(mapCoordinates.get(i)[3] == 2){
+				viewObjects.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
+				foodList.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/cookie.png", "a", 2));
 			}
 		}
 		
