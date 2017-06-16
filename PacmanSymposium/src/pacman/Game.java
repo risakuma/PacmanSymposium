@@ -21,6 +21,7 @@ import gui.practice.Screen;
 public class Game extends Screen implements Runnable, KeyListener, MouseListener{
 	
 	private Player player;
+	private Enemy enemy;
 	private PlayerStat stat;
 	private boolean gameStart;
 	private Map map;
@@ -32,6 +33,8 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	
 	private int cntr;
 	private boolean power;
+	
+	private int enemyCntr;
 	
 	private Button again;
 	
@@ -110,27 +113,28 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		
 		player = new Player("name", 0, 405, 465);
 		viewObjects.add(player);
-		viewObjects.add(new Enemy(ENEMY_START_X, ENEMY_START_Y, MAP_POSITION_X, MAP_POSITION_Y));
 		
-		//makeEnemy();
-//		for(Enemy e: enemyList){
-//			try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e1) {
-//				e1.printStackTrace();
-//			}
-//			e.setOnScreen(true);
-//			viewObjects.add(e);
-//		}
+		
+		
+		makeEnemy();
+		for(Enemy e: enemyList){
+			viewObjects.add(e);
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			e.moveToPlayer(player, map.getCoordinates());
+		}
 	}
 	
-//	public void makeEnemy(){
-//		int enemyCount = 0;
-//		while(enemyCount < 5){
-//			enemyList.add(new Enemy(ENEMY_START_X, ENEMY_START_Y, MAP_POSITION_X, MAP_POSITION_Y));
-//			enemyCount++;
-//		}
-//	}
+	private void makeEnemy(){
+		int enemyCount = 0;
+		while(enemyCount < 4){
+			enemyList.add(new Enemy(ENEMY_START_X, ENEMY_START_Y, MAP_POSITION_X, MAP_POSITION_Y));
+			enemyCount++;
+		}
+	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -211,11 +215,9 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 				checkFood();
 			}
 			
-//			for(Enemy e: enemyList){
-//				if(e.getOnScreen()){
-//					e.moveToPlayer(player, map.getCoordinates());
-//				}
-//			}
+			for(Enemy e: enemyList){
+				e.moveToPlayer(player, map.getCoordinates());
+			}
 			
 			if(foodList.isEmpty())
 				gameStart = false;
@@ -238,7 +240,6 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 				if(a >= player.getBottomCoordinates()[0] && a <= player.getBottomCoordinates()[1] && 
 						f.getTopCoordinates()[2] >= player.getTopCoordinates() [2] + 5 && f.getTopCoordinates()[2] <= player.getBottomCoordinates()[2] - 5){
 					if(f.isAPowerUp()){
-						System.out.println("p");
 						cntr = 0;
 						power = true;
 						player.setEat(true);
@@ -289,7 +290,6 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 				if(d >= player.getRightCoordinates()[0] && d <= player.getRightCoordinates()[1] && 
 						f.getLeftCoordinates()[2] >= player.getLeftCoordinates()[2] + 5 && f.getLeftCoordinates()[2] <= player.getRightCoordinates()[2] - 5){
 					if(f.isAPowerUp()){
-						System.out.println("p");
 						cntr = 0;
 						power = true;
 						player.setEat(true);
