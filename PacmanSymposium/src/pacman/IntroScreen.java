@@ -14,6 +14,11 @@ import gui.components.TextLabel;
 import gui.components.Visible;
 import gui.practice.Screen;
 
+/**
+ * @author Katherine
+ *
+ */
+
 public class IntroScreen extends Screen implements MouseMotionListener, MouseListener{
 	
 	private ClickableGraphic startBG;
