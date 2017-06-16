@@ -18,16 +18,14 @@ public class IntroScreen extends Screen implements MouseMotionListener, MouseLis
 	
 	private ClickableGraphic startBG;
 	private ClickableGraphic textBox;
-//	private ClickableGraphic textBox2;
-//	private ClickableGraphic textBox3;
 	private Graphic alice;
 	private Graphic rabbit;
 	private Graphic cheshire;
 	private Graphic storyBG1;
 	private Graphic storyBG2;
 	private Graphic storyBG3;
-	private TextLabel text;
-	private TextLabel text2;
+	private TextLabel title;
+	private TextLabel startText;
 	private TextLabel story;
 	private Button gameButton;
 
@@ -40,23 +38,23 @@ public class IntroScreen extends Screen implements MouseMotionListener, MouseLis
 		startBG = new ClickableGraphic(20, 40, 1200, 730, "resource/AliceInWonderland.jpg");	
 		viewObjects.add(startBG);
 		
-		text = new TextLabel(375, 300, 185, 100, "Alice");
-		text.setColor(Color.white);
-		text.setSize(84);
-		text.setFont("Century Gothic");
-		viewObjects.add(text);
+		title = new TextLabel(375, 300, 185, 100, "Alice");
+		title.setColor(Color.white);
+		title.setSize(84);
+		title.setFont("Century Gothic");
+		viewObjects.add(title);
 		
-		text2 = new TextLabel(450, 350, 225, 100, "(Click To Continue)");
-		text2.setColor(Color.white);
-		text2.setSize(24);
-		text2.setFont("Helvetica");
-		viewObjects.add(text2);
+		startText = new TextLabel(450, 350, 225, 100, "(Click To Continue)");
+		startText.setColor(Color.white);
+		startText.setSize(24);
+		startText.setFont("Helvetica");
+		viewObjects.add(startText);
 		
 		startBG.setAction(new Action(){
 			public void act(){
 				viewObjects.remove(startBG);
-				viewObjects.remove(text);
-				viewObjects.remove(text2);
+				viewObjects.remove(title);
+				viewObjects.remove(startText);
 				
 				storyBG1 = new Graphic(20, 40, 1200, 730, "resource/BlackScreen.jpeg");
 				viewObjects.add(storyBG1);
@@ -248,8 +246,8 @@ public class IntroScreen extends Screen implements MouseMotionListener, MouseLis
 		if(textBox.isHovered(e.getX(), e.getY())){
 			textBox.act();
 		}
-		if(gameButton.isHovered(e.getX(), e.getY()))
-			gameButton.act();
+//		if(gameButton.isHovered(e.getX(), e.getY()))
+//			gameButton.act();
 	}
 	
 	public MouseListener getMouseListener(){
@@ -265,7 +263,6 @@ public class IntroScreen extends Screen implements MouseMotionListener, MouseLis
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
