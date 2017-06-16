@@ -38,12 +38,14 @@ public class Map extends Component{
 	@Override
 	public void update(Graphics2D g) {
 		coordinates = new ArrayList<int[]>();
-		g.setColor(Color.black);
+		g.setColor(new Color(51, 102, 0));
 
 		//makes a grid
 		for(int x = 0; x < WIDTH; x += SIZE){
 			for(int y = 0; y < HEIGHT; y += SIZE){
 				coordinates.add(new int[]{x, y, SIZE, _SPACE});
+				g.setColor(new Color(25, 51, 0));
+				g.fillRect(x, y, SIZE, SIZE);
 			}
 		}
 		
@@ -56,6 +58,7 @@ public class Map extends Component{
 								coordinate[0] == WIDTH - SIZE && coordinate[1] == (SIZE * (HORIZONTAL_TRANSPORT - 1)) || coordinate[0] == WIDTH - SIZE && coordinate[1] == SIZE * HORIZONTAL_TRANSPORT){
 					coordinate[3] = _TRANSPORT;
 				}else{
+					g.setColor(new Color(51, 102, 0));
 					g.drawRect(coordinate[0], coordinate[1], SIZE, SIZE);
 					coordinate[3] = _WALL;
 				}
