@@ -12,7 +12,9 @@ import java.util.Timer;
 
 import gui.components.Action;
 import gui.components.Button;
+import gui.components.ClickableGraphic;
 import gui.components.Graphic;
+import gui.components.TextLabel;
 import gui.components.Visible;
 import gui.practice.Screen;
 
@@ -35,6 +37,10 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	private boolean power;
 	
 	private int enemyCntr;
+	private int enemyIndx;
+	
+	private int deadCntr;
+	private boolean dead;
 	
 	private Button again;
 	
@@ -114,23 +120,15 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		player = new Player("name", 0, 405, 465);
 		viewObjects.add(player);
 		
-		
+		enemy = new Enemy(ENEMY_START_X, ENEMY_START_Y, MAP_POSITION_X, MAP_POSITION_Y);
+		viewObjects.add(enemy);
 		
 		makeEnemy();
-		for(Enemy e: enemyList){
-			viewObjects.add(e);
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			e.moveToPlayer(player, map.getCoordinates());
-		}
 	}
 	
 	private void makeEnemy(){
 		int enemyCount = 0;
-		while(enemyCount < 4){
+		while(enemyCount < 7){
 			enemyList.add(new Enemy(ENEMY_START_X, ENEMY_START_Y, MAP_POSITION_X, MAP_POSITION_Y));
 			enemyCount++;
 		}
@@ -176,10 +174,24 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 				e.printStackTrace();
 			}
 			cntr++;
+			enemyCntr++;
+			deadCntr++;
 			
-			if(cntr > 40){
+			if(cntr > 50 && power){
+				cntr = 0;
 				player.setEat(false);
 				power = false;
+			}
+			
+			if(deadCntr > 25 && dead){
+				deadCntr = 0;
+				dead = false;
+			}
+			
+			if(enemyCntr % 35 == 0 && enemyIndx < enemyList.size()){
+				viewObjects.add(enemyList.get(enemyIndx));
+				enemyList.get(enemyIndx).setOnScreen(true);
+				enemyIndx++;
 			}
 			
 			if(upPressed){
@@ -189,6 +201,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 					break;
 				}
 				checkFood();
+				isGhostDead();
 			}
 			if(downPressed){
 				player.update("DOWN", map.getCoordinates());
@@ -197,6 +210,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 					break;
 				}
 				checkFood();
+				isGhostDead();
 			}
 			if(leftPressed){
 				player.update("LEFT", map.getCoordinates());
@@ -205,6 +219,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 					break;
 				}
 				checkFood();
+				isGhostDead();
 			}
 			if(rightPressed){
 				player.update("RIGHT", map.getCoordinates());
@@ -213,10 +228,16 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 					break;
 				}
 				checkFood();
+				isGhostDead();
 			}
 			
-			for(Enemy e: enemyList){
-				e.moveToPlayer(player, map.getCoordinates());
+			if(deadCntr == 0){
+				enemy.moveToPlayer(player, map.getCoordinates());
+			
+				for(Enemy e: enemyList){
+					if(e.getOnScreen())
+						e.moveToPlayer(player, map.getCoordinates());
+				}
 			}
 			
 			if(foodList.isEmpty())
@@ -224,11 +245,28 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 
 		}
 		
-		if(!gameStart){
-			youWinText(viewObjects);
-		}
 		if(!gameStart && isGameOver()){
+			Graphic gameOverBG = new Graphic(0, 0, 1200, 730, "resource/gameOver.jpg");
+			Graphic gameOver = new Graphic((getWidth()/2) - 170, (getHeight()/2) - 140, 400, 300, "resource/GO.png");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			viewObjects.add(gameOverBG);
+			viewObjects.add(gameOver);
+			
+			ClickableGraphic textBox = new ClickableGraphic(40, 550, 1140, 150, "resource/textbox.png");
+			viewObjects.add(textBox);
+			
+			TextLabel story = new TextLabel(40, 450, 1160, 150, "...Exhausted, Alice fell into an eternal slumber in the Haunted Forest... ");
+			story.setColor(Color.black);
+			viewObjects.add(story);
+			
 			gameOverButton(viewObjects);
+		}else if(!gameStart){
+			
 		}
 	}
 	
@@ -338,15 +376,54 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		
 	}
 	
-//	//			//if(player.getPosX() == e.getPosX() && player.getPosY() == e.getPosY() && player.canEat()){
-//	e.setEaten(true);
-//	e.backToBase(ENEMY_START_X, ENEMY_START_Y);
-//	e.setEaten(false);
+	private void isGhostDead(){
+		for(Enemy e : enemyList){
+			for(int i = e.getTopCoordinates()[0] + 3; i <= e.getTopCoordinates()[1] - 3; i++){
+				if(player.canEat() && i >= player.getBottomCoordinates()[0] && i <= player.getBottomCoordinates()[1] && 
+						e.getTopCoordinates()[2] >= player.getTopCoordinates() [2] + 5 && e.getTopCoordinates()[2] <= player.getBottomCoordinates()[2] - 5){
+					e.backToBase(ENEMY_START_X, ENEMY_START_Y);
+					dead = true;
+				}else if (!dead){
+					deadCntr = 0;
+				}
+			}
+			
+			for(int i = e.getBottomCoordinates()[0] + 3; i <= e.getBottomCoordinates()[1] - 3; i++){
+				if(player.canEat() && i >= player.getTopCoordinates()[0] && i <= player.getTopCoordinates()[1] && 
+						e.getBottomCoordinates()[2] >= player.getTopCoordinates()[2] + 5 && e.getBottomCoordinates()[2] <= player.getBottomCoordinates()[2] - 5){
+					e.backToBase(ENEMY_START_X, ENEMY_START_Y);
+					dead = true;
+				}else if (!dead){
+					deadCntr = 0;
+				}
+			}
+			
+			for(int i = e.getRightCoordinates()[0] + 3; i <= e.getRightCoordinates()[1] - 3; i++){
+				if(player.canEat() && i >= player.getLeftCoordinates()[0] && i <= player.getLeftCoordinates()[1] &&
+						e.getRightCoordinates()[2] >= player.getLeftCoordinates()[2] + 5 && e.getRightCoordinates()[2] <=player.getRightCoordinates()[2] - 5){
+					e.backToBase(ENEMY_START_X, ENEMY_START_Y);
+					dead = true;
+				}else if (!dead){
+					deadCntr = 0;
+				}
+			}
+			
+			for(int i = e.getLeftCoordinates()[0]; i <= e.getLeftCoordinates()[1]; i++){
+				if(player.canEat() && i >= player.getRightCoordinates()[0] && i <= player.getRightCoordinates()[1] && 
+						e.getLeftCoordinates()[2] >= player.getLeftCoordinates()[2] + 5 && e.getLeftCoordinates()[2] <= player.getRightCoordinates()[2] - 5){
+					e.backToBase(ENEMY_START_X, ENEMY_START_Y);
+					dead = true;
+				}else if (!dead){
+					deadCntr = 0;
+				}
+			}
+		}
+	}
 	
 	private void gameOverButton(ArrayList<Visible> viewObjects){
-		again = new Button(40, 20, 150, 60, "Play Again", Color.blue, new Action(){
+		again = new Button(1000, 650, 150, 40, "Play Again?", Color.red, new Action(){
 			public void act(){
-				System.out.println("DONE!");
+				Main.mainGame.setScreen(Main.screen);
 			}
 		});
 		viewObjects.add(again);
