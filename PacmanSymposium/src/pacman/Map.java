@@ -19,10 +19,10 @@ public class Map extends Component{
 	private static final int HORIZONTAL_TRANSPORT = HEIGHT / 60;
 	private static final int  SIZE = 30;
 	
-	public static final int[] SPACE_TOP_COORD = {(VERTICAL_TRANSPORT - 1)*SIZE, (VERTICAL_TRANSPORT + 1)*SIZE, 25}; //between x1 and x2 and above y1
-	public static final int[] SPACE_BOTTOM_COORD = {(VERTICAL_TRANSPORT - 1)*SIZE, (VERTICAL_TRANSPORT + 1)*SIZE, HEIGHT + SIZE}; //between x1 and x2 and below y1
-	public static final int[] SPACE_RIGHT_COORD = {(HORIZONTAL_TRANSPORT - 1)*SIZE, (HORIZONTAL_TRANSPORT + 2)*SIZE, WIDTH}; //between y1 and y2 and greater than x1
-	public static final int[] SPACE_LEFT_COORD = {(HORIZONTAL_TRANSPORT - 1)*SIZE, (HORIZONTAL_TRANSPORT + 2)*SIZE, 0}; //between y1 and y2 and less than x1
+	public static final int[] SPACE_TOP_COORD = {(VERTICAL_TRANSPORT - 1)*SIZE, (VERTICAL_TRANSPORT + 1)*SIZE, 35}; //between x1 and x2 and above y1
+	public static final int[] SPACE_BOTTOM_COORD = {(VERTICAL_TRANSPORT - 1)*SIZE, (VERTICAL_TRANSPORT + 1)*SIZE, HEIGHT + 10}; //between x1 and x2 and below y1
+	public static final int[] SPACE_RIGHT_COORD = {(HORIZONTAL_TRANSPORT - 1)*SIZE, (HORIZONTAL_TRANSPORT + 2)*SIZE, WIDTH - 10}; //between y1 and y2 and greater than x1
+	public static final int[] SPACE_LEFT_COORD = {(HORIZONTAL_TRANSPORT - 1)*SIZE, (HORIZONTAL_TRANSPORT + 2)*SIZE, 20}; //between y1 and y2 and less than x1
 	
 	private static final int _SPACE = 0;
 	private static final int _WALL = 1;
@@ -58,7 +58,7 @@ public class Map extends Component{
 								coordinate[0] == WIDTH - SIZE && coordinate[1] == (SIZE * (HORIZONTAL_TRANSPORT - 1)) || coordinate[0] == WIDTH - SIZE && coordinate[1] == SIZE * HORIZONTAL_TRANSPORT){
 					coordinate[3] = _TRANSPORT;
 				}else{
-					g.setColor(new Color(51, 102, 0));
+					g.setColor(new Color(255, 102, 102));
 					g.drawRect(coordinate[0], coordinate[1], SIZE, SIZE);
 					coordinate[3] = _WALL;
 				}

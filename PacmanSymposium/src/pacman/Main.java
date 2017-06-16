@@ -16,7 +16,7 @@ public class Main extends gui.practice.GUIApplication{
 	protected void initScreen() {
 		screen = new IntroScreen(1200, 730);
 		
-		pacman = new Game(1200, 730);
+		pacman = new Game(1200, 720);
 		setScreen(pacman);
 	}
 
