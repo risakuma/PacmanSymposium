@@ -17,7 +17,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 	
 	private int x;
 	private int y;
-	private static double scale = .25;
+	private static double scale = 0.25;
 	
 	private boolean eaten;
 	
@@ -67,19 +67,23 @@ public class Enemy extends Graphic implements EnemyInterface{
 		}
 		
 		if(p.canEat()){
-			if(playerPosX >= x){
+			if(playerPosX >= x && canMove(map, x - 5, y, LEFT)){
+				setImage("resource/ghost_run_left.png", scale);
 				x -= 5;
 				setX(x);
 			}
-			if(playerPosX <= x){
+			if(playerPosX <= x && canMove(map, x + 5, y, RIGHT)){
+				setImage("resource/ghost_run_right.png", scale);
 				x += 5;
 				setX(x);
 			}
-			if(playerPosY >= y){
+			if(playerPosY >= y&& canMove(map, x, y - 5, TOP)){
+				setImage("resource/ghost_run_up.png", scale);
 				y -= 5;
 				setY(y);
 			}
-			if(playerPosX <= y){
+			if(playerPosX <= y && canMove(map, x, y + 5, BOTTOM)){
+				setImage("resource/ghost_run_up.png", scale);
 				y += 5;
 				setY(y);
 			}

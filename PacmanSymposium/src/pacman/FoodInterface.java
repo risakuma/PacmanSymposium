@@ -7,7 +7,7 @@ package pacman;
 
 public interface FoodInterface {
 
-	public int increasePoints(); 
+	public int getPoints(); 
 	public boolean isAPowerUp();
 	
 }

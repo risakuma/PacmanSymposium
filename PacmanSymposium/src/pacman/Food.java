@@ -18,16 +18,20 @@ public class Food extends Graphic implements FoodInterface{
 	private int x;
 	private int y;
 	
-	public Food(int x, int y, String imageLocation, boolean b, int p) {
-		super(x, y, .03, imageLocation);
+	public Food(int x, int y, String imageLocation, double scale, boolean b, int p) {
+		super(x, y, scale, imageLocation);
 		powerUp = b;
 		foodPoint = p;
 		this.x = x;
 		this.y = y;
 	}
+	
+	public void setImage(String location, double scale){
+		super.setImage(location, scale);
+	}
 
 	@Override
-	public int increasePoints() {
+	public int getPoints() {
 		return this.foodPoint;
 	}
 
@@ -42,6 +46,22 @@ public class Food extends Graphic implements FoodInterface{
 
 	public int getPosY(){
 		return y;
+	}
+	
+	public int[] getTopCoordinates(){
+		return new int[]{x, (x + getWidth()), y};
+	}
+	
+	public int[] getBottomCoordinates(){
+		return new int[]{x, (x + getWidth()), (y + getHeight())};
+	}
+	
+	public int[] getRightCoordinates(){
+		return new int[]{y, (y + getHeight()), (x + getWidth())};
+	}
+	
+	public int[] getLeftCoordinates(){
+		return new int[]{y, (y + getHeight()), x};
 	}
 
 }

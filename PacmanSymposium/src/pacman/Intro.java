@@ -2,6 +2,10 @@ package pacman;
 
 import gui.practice.GUIApplication;
 
+/**
+ * @author Risa
+ *
+ */
 public class Intro extends GUIApplication{
 	
 	public static Intro intro;

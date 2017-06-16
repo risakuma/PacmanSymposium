@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 import gui.components.Component;
 
+/**
+ * @author Risa
+ *
+ */
 public class Map extends Component{
 	
 	private ArrayList<int[]> coordinates; //{x, y, size, type}

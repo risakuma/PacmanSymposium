@@ -40,8 +40,12 @@ public class Player extends Graphic implements PlayerInterface{
 	
 	public void update(String move, ArrayList<int[]> map){
 		if(move.equals("UP")){
-			//System.out.println("Player moved UP");
-			setImage("resource/alice_up.png", scale);
+			if(canEat){
+				setImage("resource/alice_power_up.png", scale);
+			}else{
+				setImage("resource/alice_up.png", scale);
+			}
+			
 			if(canMove(map, posX, posY - 5, TOP)){
 				posY -= 5;
 				setY(posY);
@@ -52,8 +56,12 @@ public class Player extends Graphic implements PlayerInterface{
 			}
 		}
 		if(move.equals("DOWN")){
-			//System.out.println("Player moved DOWN");
-			setImage("resource/alice_down.png", scale);
+			if(canEat){
+				setImage("resource/alice_power_down.png", scale);
+			}else{
+				setImage("resource/alice_down.png", scale);
+			}
+			
 			if(canMove(map, posX, posY + 5, BOTTOM)){
 				posY += 5;
 				setY(posY);
@@ -64,8 +72,12 @@ public class Player extends Graphic implements PlayerInterface{
 			}
 		}
 		if(move.equals("LEFT")){
-			//System.out.println("Player moved LEFT");
-			setImage("resource/alice_left.png", scale);
+			if(canEat){
+				setImage("resource/alice_power_left.png", scale);
+			}else{
+				setImage("resource/alice_left.png", scale);
+			}
+			
 			if(canMove(map, posX - 5, posY, LEFT)){
 				posX -= 5;
 				setX(posX);
@@ -76,8 +88,12 @@ public class Player extends Graphic implements PlayerInterface{
 			}
 		}
 		if(move.equals("RIGHT")){
-			//System.out.println("Player moved RIGHT");
-			setImage("resource/alice_right.png", scale);
+			if(canEat){
+				setImage("resource/alice_power_right.png", scale);
+			}else{
+				setImage("resource/alice_right.png", scale);
+			}
+			
 			if(canMove(map, posX + 5, posY, RIGHT)){
 				posX += 5;
 				setX(posX);
@@ -126,9 +142,6 @@ public class Player extends Graphic implements PlayerInterface{
 	
 	public void setEat(boolean b){
 		canEat = b;
-	}
-	public void setScore(int p){
-		score += p;
 	}
 	
 	private boolean canMove(ArrayList<int[]> map, int newX, int newY, int direction){
