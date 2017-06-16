@@ -1,18 +1,15 @@
 package pacman;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import gui.components.Component;
 /**
  * @author Risa
  *
  */
-public class PlayerStat extends Component{
-
-	public PlayerStat(int x, int y, int w, int h) {
-		super(x, y, w, h);
-		// TODO Auto-generated constructor stub
-	}
+public class PlayerStat{
 
 	private int points;
 	private int foodLeft;
@@ -35,12 +32,6 @@ public class PlayerStat extends Component{
 	
 	public int getFoodLeft(){
 		return foodLeft;
-	}
-
-	@Override
-	public void update(Graphics2D g) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

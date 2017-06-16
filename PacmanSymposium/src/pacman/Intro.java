@@ -23,7 +23,7 @@ public class Intro extends GUIApplication{
 		screen = new IntroScreen(1200, 730);
 		setScreen(screen);
 		
-		//gameScreen = new Game(1200, 730);
+		gameScreen = new Game(1200, 730);
 	}
 
 }

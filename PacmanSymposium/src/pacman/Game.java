@@ -69,7 +69,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		playerList = new ArrayList<Player>();
 		enemyList = new ArrayList<Enemy>();
 		foodList = new ArrayList<Food>();
-		stat = new PlayerStat(MAP_POSITION_X,MAP_POSITION_Y,200, 650);
+		stat = new PlayerStat();
 		
 //		System.out.println("Enter player name.");
 //		Scanner s = new Scanner(System.in);
@@ -168,6 +168,11 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	@Override
 	public void run() {
 		while(gameStart){
+			
+			
+			
+			
+			
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
