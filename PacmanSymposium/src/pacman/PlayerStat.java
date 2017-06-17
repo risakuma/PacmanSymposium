@@ -65,12 +65,12 @@ public class PlayerStat extends Component{
 		g.setFont(new Font("Courier", Font.BOLD, 15));
 		g.drawString("Number of Strawberries Left: ", x + 30, y);
 		g.setFont(new Font("Courier", Font.PLAIN, 15));
-		g.drawString("" + foodLeft, x + 290, y + 1);
+		g.drawString("" + foodLeft, x + 285, y + 1);
 		y += space + 1;
 		g.setFont(new Font("Courier", Font.BOLD, 15));
-		g.drawString("Points: " , x +30, y);
+		g.drawString("Points: " , x + 30, y);
 		g.setFont(new Font("Courier", Font.PLAIN, 15));
-		g.drawString("" + points, x +100, y + 1);
+		g.drawString("" + points, x + 100, y + 1);
 		
 		y += space + 5;
 		

@@ -8,9 +8,6 @@ import gui.components.Graphic;
  */
 
 public class Food extends Graphic implements FoodInterface{
-
-	//food randomly appears at different spots, the more times yo collect, the more appears each time
-	//powerups dissapear within time
 	
 	private int foodPoint;
 	private boolean powerUp;

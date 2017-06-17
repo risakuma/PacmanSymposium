@@ -12,8 +12,6 @@ import gui.components.Visible;
 
 public class Player extends Graphic implements PlayerInterface{
 	
-	//list of player names and highscores
-	
 	private String name;
 	private int score;
 	private int posX;

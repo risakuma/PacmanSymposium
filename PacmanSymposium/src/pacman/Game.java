@@ -39,7 +39,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	private int deadCntr;
 	private boolean dead;
 	
-	private Button again;
+//	private Button again;
 	
 	private boolean upPressed;
 	private boolean downPressed;
@@ -69,20 +69,22 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		stat = new PlayerStat(MAP_POSITION_X + MAP_WIDTH + 50, MAP_POSITION_Y, 350, MAP_HEIGHT);
 		viewObjects.add(stat);
 		
-//		System.out.println("Enter player name.");
-//		Scanner s = new Scanner(System.in);
-//		String name = s.nextLine();
 		this.gameStart = true;
 		
 		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, MAP_WIDTH, MAP_HEIGHT);
 		viewObjects.add(map);
 		mapCoordinates = map.getCoordinates();
-		for(int i = 0; i < mapCoordinates.size(); i+=4){
-			if(mapCoordinates.get(i)[3] == 2){
-				viewObjects.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
-				foodList.add(new Food(mapCoordinates.get(i)[0] + MAP_POSITION_X, mapCoordinates.get(i)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+		
+		int num = ((int)(Math.random() * mapCoordinates.size()));
+		int n = 0;
+		while(n < num){
+			int r = (int)(Math.random() * mapCoordinates.size());	
+			if(mapCoordinates.get(r)[3] == 2 && !foodExists(r)){
+				//viewObjects.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+				foodList.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
 				stat.increaseNumOfFood(1);
 			}
+			n++;
 		}
 		
 
@@ -147,6 +149,16 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		
 		Graphic ghost2 = new Graphic(MAP_POSITION_X + MAP_WIDTH + 60, MAP_POSITION_Y + 610, .3, "resource/ghost_run_left.png");
 		viewObjects.add(ghost2);
+	}
+	
+	private boolean foodExists(int r){
+		for(Food food : foodList){
+			if(mapCoordinates.get(r)[0] + MAP_POSITION_X == food.getPosX() &&
+					mapCoordinates.get(r)[1] + MAP_POSITION_Y == food.getPosY()){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private void makeEnemy(){
@@ -292,7 +304,6 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		}
 	}
 	
-	//player won't know which food they already have,it is part of the game for the player to figure out where the left over food is 
 	private void checkFood(){
 		A: for(int i = 0; i < foodList.size(); i++){
 			Food f = foodList.get(i);
@@ -442,19 +453,14 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		}
 	}
 	
-	private void gameOverButton(ArrayList<Visible> viewObjects){
-		again = new Button(1000, 650, 150, 40, "Play Again?", Color.red, new Action(){
-			public void act(){
-				Main.mainGame.setScreen(Main.screen);
-			}
-		});
-		viewObjects.add(again);
-		
-	}
-	
-	private void youWinText(ArrayList<Visible> viewObjects){
-		System.out.println("win!");
-	}
+//	private void gameOverButton(ArrayList<Visible> viewObjects){
+//		again = new Button(1000, 650, 150, 40, "Play Again?", Color.red, new Action(){
+//			public void act(){
+//				Main.mainGame.setScreen(Main.screen);
+//			}
+//		});
+//		viewObjects.add(again);
+//	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -471,8 +477,8 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		if(again.isHovered(e.getX(), e.getY()))
-			again.act();
+//		if(again.isHovered(e.getX(), e.getY()))
+//			again.act();
 	}
 	
 	public MouseListener getMouseListener(){
