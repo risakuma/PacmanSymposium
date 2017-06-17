@@ -43,7 +43,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	private boolean dead;
 	
 //	private Button again;
-	private Button win;
+	private ClickableGraphic box;
 	
 	private boolean upPressed;
 	private boolean downPressed;
@@ -308,8 +308,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 			story.setColor(Color.black);
 			viewObjects.add(story);
 			
-			player.littleAliceMoving(viewObjects, "resource/alice_right.png", "resource/alice_left.png", -100, 1300);
-			Enemy.littleGhostsMoving(viewObjects, "resource/ghost_right.png", "resource/ghost_left.png", -120, 1300);
+			littleAliceAndGhosts(viewObjects, "resource/alice_right.png", "resource/alice_left.png", -100, "resource/ghost_right.png", "resource/ghost_left.png", -160, 1300);
 			
 		}else if(!gameStart){	
 			Graphic finishBG = new Graphic(0, 0, 1200, 720, "resource/BlackScreen.jpeg");
@@ -320,23 +319,105 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 			}
 			viewObjects.add(finishBG);
 			
-			ClickableGraphic box = new ClickableGraphic(40, 550, 1140, 150, "resource/textbox.png");
+			box = new ClickableGraphic(40, 550, 1140, 150, "resource/textbox.png");
 			viewObjects.add(box);
 			
 			TextLabel text = new TextLabel(40, 450, 1160, 150, "... (Next)");
 			text.setColor(Color.black);
 			viewObjects.add(text);
 			
-			player.littleAliceMoving(viewObjects, "resource/alice_power_right.png", "resource/alice_power_left.png", -200, 1400);
-			
 			box.setAction(new Action(){
 
 				@Override
 				public void act() {
-					
+					System.out.println("a");
+					Main.mainGame.setScreen(Main.goodEnd);
 				}
 				
 			});
+			
+			littleAliceAndGhosts(viewObjects, "resource/alice_power_right.png", "resource/alice_power_left.png", -160, "resource/ghost_run_right.png", "resource/ghost_run_left.png", -100, 1300);	
+		}
+	}
+	
+	private void littleAliceAndGhosts(ArrayList<Visible> viewObjects, String aliceRight, String aliceLeft, int aliceStartX, String ghostRight, String ghostLeft, int ghostStartX,int endX){
+		Graphic alice = new Graphic(aliceStartX, 510, 1.1, aliceRight);
+		Graphic ghost = new Graphic(ghostStartX, 510, .3, ghostRight);
+		viewObjects.add(alice);
+		viewObjects.add(ghost);
+		
+		int aX = aliceStartX;
+		int gX = ghostStartX;
+		
+		alice.setY(510);
+		ghost.setY(510);
+		
+		boolean rightA = true;
+		boolean leftA = false;
+		
+		boolean rightG = true;
+		boolean leftG = false;
+		
+		while(true){
+			if(rightA){
+				aX += 5;
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				alice.setX(aX);
+				if(aX >= endX){
+					rightA = false;
+					leftA = true;
+					alice.setImage(aliceLeft, 1.1);
+				}
+			}
+			
+			if(rightG){
+				gX += 5;
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				ghost.setX(gX);
+				if(gX >= endX){
+					rightG = false;
+					leftG = true;
+					ghost.setImage(ghostLeft, .3);
+				}
+			}
+			
+			if(leftA){
+				aX -= 5;
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				alice.setX(aX);
+				if(aX <= aliceStartX){
+					rightA = true;
+					leftA = false;
+					alice.setImage(aliceRight, 1.1);
+				}
+			}
+			
+			if(leftG){
+				gX -= 5;
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				ghost.setX(gX);
+				if(gX <= aliceStartX){
+					rightG = true;
+					leftG = false;
+					ghost.setImage(ghostRight, .3);
+				}
+			}
 			
 		}
 	}
@@ -517,8 +598,8 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 //		if(again.isHovered(e.getX(), e.getY()))
 //			again.act();
 		
-		if(win.isHovered(e.getX(), e.getY()))
-			win.act();
+		if(box.isHovered(e.getX(), e.getY()))
+			box.act();
 	}
 	
 	public MouseListener getMouseListener(){
