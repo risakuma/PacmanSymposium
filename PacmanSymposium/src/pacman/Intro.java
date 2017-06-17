@@ -6,12 +6,14 @@ import gui.practice.GUIApplication;
  * @author Risa
  *
  */
+
+// RUN THIS CLASS
 public class Intro extends GUIApplication{
 	
 	public static Intro intro;
-	public static IntroScreen screen;
-	public static Game gameScreen;
-	public static GoodEndScreen goodEnd;
+	public static IntroScreen screen = new IntroScreen(1200, 730);
+	public static Game gameScreen = new Game(1200, 730);
+	public static GoodEndScreen goodEnd = new GoodEndScreen(1200, 730);;
 
 	public static void main(String[] args){
 		intro = new Intro();
@@ -21,12 +23,7 @@ public class Intro extends GUIApplication{
 
 	@Override
 	protected void initScreen() {		
-		screen = new IntroScreen(1200, 730);
 		setScreen(screen);
-		
-		goodEnd = new GoodEndScreen(1200, 730);
-		
-		gameScreen = new Game(1200, 730);
 	}
 
 }

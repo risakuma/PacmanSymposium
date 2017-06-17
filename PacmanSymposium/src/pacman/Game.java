@@ -28,7 +28,6 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	private boolean gameStart;
 	private Map map;
 	
-	private ArrayList<Player> playerList;
 	private ArrayList<Enemy> enemyList;
 	private ArrayList<int[]> mapCoordinates;
 	private ArrayList<Food> foodList;
@@ -44,6 +43,8 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	
 //	private Button again;
 	private ClickableGraphic box;
+	private boolean start;
+	private boolean game;
 	
 	private boolean upPressed;
 	private boolean downPressed;
@@ -67,13 +68,13 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		playerList = new ArrayList<Player>();
 		enemyList = new ArrayList<Enemy>();
 		foodList = new ArrayList<Food>();
 		stat = new PlayerStat(MAP_POSITION_X + MAP_WIDTH + 50, MAP_POSITION_Y, 350, MAP_HEIGHT);
 		viewObjects.add(stat);
 		
 		this.gameStart = true;
+		game = true;
 		
 		map = new Map(MAP_POSITION_X, MAP_POSITION_Y, MAP_WIDTH, MAP_HEIGHT);
 		viewObjects.add(map);
@@ -81,18 +82,18 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		
 		int num = ((int)(Math.random() * mapCoordinates.size()));
 		int n = 0;
-//		while(n < num){
-//			int r = (int)(Math.random() * mapCoordinates.size());	
-//			if(mapCoordinates.get(r)[3] == 2 && !foodExists(r)){
-//				//viewObjects.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
-//				foodList.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
-//				stat.increaseNumOfFood(1);
-//			}
-//			n++;
-//		}
+		while(n < num){
+			int r = (int)(Math.random() * mapCoordinates.size());	
+			if(mapCoordinates.get(r)[3] == 2 && !foodExists(r)){
+				//viewObjects.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+				foodList.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+				stat.increaseNumOfFood(1);
+			}
+			n++;
+		}
 		
-		foodList.add(new Food(mapCoordinates.get(24)[0] + MAP_POSITION_X, mapCoordinates.get(24)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
-		stat.increaseNumOfFood(1);
+//		foodList.add(new Food(mapCoordinates.get(24)[0] + MAP_POSITION_X, mapCoordinates.get(24)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+//		stat.increaseNumOfFood(1);
 		
 
 		for(int i = 0; i < 10; i++){
@@ -330,11 +331,11 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 
 				@Override
 				public void act() {
-					System.out.println("a");
-					Main.mainGame.setScreen(Main.goodEnd);
+					Intro.intro.setScreen(Intro.goodEnd);
 				}
 				
 			});
+			game = false;
 			
 			littleAliceAndGhosts(viewObjects, "resource/alice_power_right.png", "resource/alice_power_left.png", -160, "resource/ghost_run_right.png", "resource/ghost_run_left.png", -100, 1300);	
 		}
@@ -358,7 +359,23 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		boolean rightG = true;
 		boolean leftG = false;
 		
-		while(true){
+		start = true;
+		
+		while(start){
+			
+			if(!game){
+				box.setAction(new Action(){
+	
+					@Override
+					public void act() {
+						System.out.println(2);
+						start = false;
+						Intro.intro.setScreen(Intro.goodEnd);
+					}
+					
+				});
+			}
+			
 			if(rightA){
 				aX += 5;
 				try {
@@ -418,6 +435,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 					ghost.setImage(ghostRight, .3);
 				}
 			}
+			
 			
 		}
 	}
@@ -574,7 +592,8 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 //	private void gameOverButton(ArrayList<Visible> viewObjects){
 //		again = new Button(1000, 650, 150, 40, "Play Again?", Color.red, new Action(){
 //			public void act(){
-//				Main.mainGame.setScreen(Main.screen);
+//				start = false;
+//				Intro.intro.setScreen(Intro.screen);
 //			}
 //		});
 //		viewObjects.add(again);
@@ -595,9 +614,9 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-//		if(again.isHovered(e.getX(), e.getY()))
+//		if(again.isHovered(e.getX(), e.getY())){
 //			again.act();
-		
+//		}
 		if(box.isHovered(e.getX(), e.getY()))
 			box.act();
 	}
