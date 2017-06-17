@@ -309,7 +309,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 			viewObjects.add(story);
 			
 			player.littleAliceMoving(viewObjects, "resource/alice_right.png", "resource/alice_left.png", -100, 1300);
-			Enemy.littleGhostsMoving(viewObjects, "resource/ghost_right.png", "resource/ghost_left.png", cntr, cntr);
+			Enemy.littleGhostsMoving(viewObjects, "resource/ghost_right.png", "resource/ghost_left.png", -120, 1300);
 			
 		}else if(!gameStart){	
 			Graphic finishBG = new Graphic(0, 0, 1200, 720, "resource/BlackScreen.jpeg");

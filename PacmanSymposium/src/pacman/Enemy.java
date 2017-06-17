@@ -136,7 +136,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 		return true;
 	}
 	
-	public void littleGhostsMoving(ArrayList<Visible> viewObjects, String ghostRight, String ghostLeft, int startX, int endX){
+	public static void littleGhostsMoving(ArrayList<Visible> viewObjects, String ghostRight, String ghostLeft, int startX, int endX){
 		Graphic[] ghosts = new Graphic[3];
 		
 		int x = startX;
@@ -153,6 +153,7 @@ public class Enemy extends Graphic implements EnemyInterface{
 		
 		for(int i = 0; i < 3; i++){
 			ghosts[i] = new Graphic(x, y, .3, ghostRight);
+			viewObjects.add(ghosts[i]);
 			x -= 50;
 		}
 		
