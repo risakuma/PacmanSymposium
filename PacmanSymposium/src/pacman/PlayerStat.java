@@ -17,7 +17,7 @@ public class PlayerStat extends Component{
 		// TODO Auto-generated constructor stub
 	}
 
-	private int points;
+	private static int points;
 	private int foodLeft;
 	private final int space = 20;
 	
@@ -25,7 +25,7 @@ public class PlayerStat extends Component{
 		points += p;
 	}
 	
-	public int getPoints(){
+	public static int getPoints(){
 		return points;
 	}
 	
