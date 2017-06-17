@@ -25,7 +25,6 @@ public class Intro extends GUIApplication{
 		setScreen(screen);
 		
 		goodEnd = new GoodEndScreen(1200, 730);
-		setScreen(goodEnd);
 		
 		gameScreen = new Game(1200, 730);
 	}
