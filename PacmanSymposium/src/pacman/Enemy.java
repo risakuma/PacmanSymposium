@@ -6,6 +6,7 @@ package pacman;
 import java.util.ArrayList;
 
 import gui.components.Graphic;
+import gui.components.Visible;
 
 /**
  * @author Risa
@@ -43,6 +44,8 @@ public class Enemy extends Graphic implements EnemyInterface{
 		int playerPosX = p.getPosX();
 		int playerPosY = p.getPosY();
 	
+
+		
 		if(!p.canEat()){
 			if(playerPosX >= x && canMove(map, x + 5, y, RIGHT)){
 				setImage("resource/ghost_right.png", scale);
@@ -131,6 +134,127 @@ public class Enemy extends Graphic implements EnemyInterface{
 			}
 		}
 		return true;
+	}
+	
+	public void littleGhostsMoving(ArrayList<Visible> viewObjects, String ghostRight, String ghostLeft, int startX, int endX){
+		Graphic[] ghosts = new Graphic[3];
+		
+		int x = startX;
+		int y = 510;
+		
+		boolean right0 = true;
+		boolean left0 = false;
+		
+		boolean right1 = true;
+		boolean left1 = false;
+		
+		boolean right2 = true;
+		boolean left2 = false;
+		
+		for(int i = 0; i < 3; i++){
+			ghosts[i] = new Graphic(x, y, .3, ghostRight);
+			x -= 50;
+		}
+		
+		while(true){
+			for(int j = 0; j < ghosts.length; j++){
+				if(j == 0){
+					if(right0){
+						x = ghosts[j].getX() + 5;
+						try {
+							Thread.sleep(70);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ghosts[j].setX(x);
+						if(x >= endX){
+							right0 = false;
+							left0 = true;
+							ghosts[j].setImage(ghostLeft, .3);
+						}
+					}
+					if(left0){
+						x = ghosts[j].getX() - 5;
+						try {
+							Thread.sleep(70);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ghosts[j].setX(x);
+						if(x <= startX){
+							right0 = true;
+							left0 = false;
+							ghosts[j].setImage(ghostLeft, 1.1);
+						}
+					}
+					
+				}
+				
+				if(j == 1){
+					if(right1){
+						x = ghosts[j].getX() + 5;
+						try {
+							Thread.sleep(70);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ghosts[j].setX(x);
+						if(x >= endX){
+							right1 = false;
+							left1 = true;
+							ghosts[j].setImage(ghostLeft, .3);
+						}
+					}
+					if(left1){
+						x = ghosts[j].getX() - 5;
+						try {
+							Thread.sleep(70);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ghosts[j].setX(x);
+						if(x <= startX){
+							right1 = true;
+							left1 = false;
+							ghosts[j].setImage(ghostLeft, 1.1);
+						}
+					}
+					
+				}
+				
+				if(j == 2){
+					if(right2){
+						x = ghosts[j].getX() + 5;
+						try {
+							Thread.sleep(70);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ghosts[j].setX(x);
+						if(x >= endX){
+							right2 = false;
+							left2 = true;
+							ghosts[j].setImage(ghostLeft, .3);
+						}
+					}
+					if(left2){
+						x = ghosts[j].getX() - 5;
+						try {
+							Thread.sleep(70);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ghosts[j].setX(x);
+						if(x <= startX){
+							right2 = true;
+							left2 = false;
+							ghosts[j].setImage(ghostLeft, 1.1);
+						}
+					}
+					
+				}
+			}
+		}
 	}
 	
 	public void setOnScreen(boolean b){

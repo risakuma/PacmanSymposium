@@ -168,4 +168,49 @@ public class Player extends Graphic implements PlayerInterface{
 		}
 		return true;
 	}
+	
+	public void littleAliceMoving(ArrayList<Visible> viewObjects, String aliceRight, String aliceLeft, int startX, int endX){
+		Graphic alice = new Graphic(startX, 510, 1.1, aliceRight);
+		viewObjects.add(alice);
+		
+		int x = startX;
+		int y = 510;
+		alice.setY(y);
+		
+		boolean right = true;
+		boolean left = false;
+		
+		while(true){
+			if(right){
+				x += 5;
+				try {
+					Thread.sleep(70);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				alice.setX(x);
+				if(x >= endX){
+					right = false;
+					left = true;
+					alice.setImage(aliceLeft, 1.1);
+				}
+			}
+			
+			if(left){
+				x -= 5;
+				try {
+					Thread.sleep(70);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				alice.setX(x);
+				if(x <= startX){
+					right = true;
+					left = false;
+					alice.setImage(aliceRight, 1.1);
+				}
+			}
+		}
+	}
+	
 }

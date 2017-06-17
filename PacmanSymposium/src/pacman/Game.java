@@ -16,7 +16,10 @@ import gui.components.Visible;
 import gui.practice.Screen;
 
 //where you would put it all together
-
+/**
+ * @author Risa
+ *
+ */
 public class Game extends Screen implements Runnable, KeyListener, MouseListener{
 	
 	private Player player;
@@ -40,6 +43,7 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	private boolean dead;
 	
 //	private Button again;
+	private Button win;
 	
 	private boolean upPressed;
 	private boolean downPressed;
@@ -77,15 +81,18 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 		
 		int num = ((int)(Math.random() * mapCoordinates.size()));
 		int n = 0;
-		while(n < num){
-			int r = (int)(Math.random() * mapCoordinates.size());	
-			if(mapCoordinates.get(r)[3] == 2 && !foodExists(r)){
-				//viewObjects.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
-				foodList.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
-				stat.increaseNumOfFood(1);
-			}
-			n++;
-		}
+//		while(n < num){
+//			int r = (int)(Math.random() * mapCoordinates.size());	
+//			if(mapCoordinates.get(r)[3] == 2 && !foodExists(r)){
+//				//viewObjects.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+//				foodList.add(new Food(mapCoordinates.get(r)[0] + MAP_POSITION_X, mapCoordinates.get(r)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+//				stat.increaseNumOfFood(1);
+//			}
+//			n++;
+//		}
+		
+		foodList.add(new Food(mapCoordinates.get(24)[0] + MAP_POSITION_X, mapCoordinates.get(24)[1] + MAP_POSITION_Y, "resource/Strawberry.png", 0.04, false, 30));
+		stat.increaseNumOfFood(1);
 		
 
 		for(int i = 0; i < 10; i++){
@@ -203,8 +210,6 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	@Override
 	public void run() {
 		while(gameStart){
-			stat.clear();
-			stat.update();
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -277,6 +282,9 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 				}
 			}
 			
+			stat.clear();
+			stat.update();
+			
 			if(foodList.isEmpty())
 				gameStart = false;
 
@@ -299,7 +307,36 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 			TextLabel story = new TextLabel(40, 450, 1160, 150, "...Exhausted, Alice fell into an eternal slumber in the Haunted Forest... ");
 			story.setColor(Color.black);
 			viewObjects.add(story);
-		}else if(!gameStart){
+			
+			player.littleAliceMoving(viewObjects, "resource/alice_right.png", "resource/alice_left.png", -100, 1300);
+			Enemy.littleGhostsMoving(viewObjects, "resource/ghost_right.png", "resource/ghost_left.png", cntr, cntr);
+			
+		}else if(!gameStart){	
+			Graphic finishBG = new Graphic(0, 0, 1200, 720, "resource/BlackScreen.jpeg");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			viewObjects.add(finishBG);
+			
+			ClickableGraphic box = new ClickableGraphic(40, 550, 1140, 150, "resource/textbox.png");
+			viewObjects.add(box);
+			
+			TextLabel text = new TextLabel(40, 450, 1160, 150, "... (Next)");
+			text.setColor(Color.black);
+			viewObjects.add(text);
+			
+			player.littleAliceMoving(viewObjects, "resource/alice_power_right.png", "resource/alice_power_left.png", -200, 1400);
+			
+			box.setAction(new Action(){
+
+				@Override
+				public void act() {
+					
+				}
+				
+			});
 			
 		}
 	}
@@ -479,6 +516,9 @@ public class Game extends Screen implements Runnable, KeyListener, MouseListener
 	public void mouseClicked(MouseEvent e) {
 //		if(again.isHovered(e.getX(), e.getY()))
 //			again.act();
+		
+		if(win.isHovered(e.getX(), e.getY()))
+			win.act();
 	}
 	
 	public MouseListener getMouseListener(){

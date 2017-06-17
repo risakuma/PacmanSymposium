@@ -30,8 +30,6 @@ public class Map extends Component{
 	private static final int _TRANSPORT = 3;
 	private static final int ENEMY_SPACE = 4;
 	
-	private int numOfFood;
-	
 	public Map(int x, int y, int w, int h) {
 		super(x, y, w, h);
 	}
@@ -220,7 +218,6 @@ public class Map extends Component{
 				coordinate[0] += 10;
 				coordinate[1] += 10;
 				coordinate[3] = _FOOD;
-				numOfFood++;
 			}
 		}	
 	}
